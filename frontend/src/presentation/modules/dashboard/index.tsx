@@ -1,5 +1,6 @@
-import {CardDetailStock, CardSimulateStock, ContentFlex, Wrapper} from "./styles.ts";
+import {CardSimulateStock, ContentFlex, Wrapper} from "./styles.ts";
 import {IconBack} from "../../components/iconBack";
+import {CardDetailStock} from "./components/cardDetailStock";
 
 export const Dashboard = () => {
     return (

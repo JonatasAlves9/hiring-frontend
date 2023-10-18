@@ -11,6 +11,7 @@ export interface Colors {
     background: string;
     dark: string;
     white: string;
+    border_dark: string;
 }
 
 export interface Fonts {
@@ -37,6 +38,7 @@ const themeDark: Theme = {
         white: '#fff',
         dark: '#1D1D20',
         background: '#141518',
+        border_dark: '#2C2D31'
     },
     fonts: {
         regular: 'NunitoRegular',

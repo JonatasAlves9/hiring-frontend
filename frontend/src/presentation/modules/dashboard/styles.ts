@@ -10,12 +10,7 @@ export const ContentFlex = styled.div`
   gap: 30px;
 `;
 
-export const CardDetailStock = styled.div`
-  background-color: ${({theme}) => theme.colors.dark};
-  height: 200px;
-  flex: 1;
-  border-radius: 20px;
-`;
+
 
 export const CardSimulateStock = styled.div`
   background-color: yellow;
