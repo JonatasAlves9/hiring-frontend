@@ -1,7 +1,8 @@
 import {HttpClient, HttpStatusCode} from '../../protocols/http/http-client';
-import {GetStockByNameParams, Stocks} from "../../../domain/usecases/stocks/stocks.ts";
-import {ErrorResponse, GetStockByNameResponse} from "../../../domain/models";
+import {GetStockByNameParams, GetStockHistoryParams, Stocks} from "../../../domain/usecases/stocks/stocks.ts";
+import {GetStockByNameResponse} from "../../../domain/models";
 import {ForbiddenError, InvalidCredentialsError, UnexpectedError} from "../../../domain/errors";
+import {GetStockHistoryResponse} from "../../../domain/models/get-stock-history-response.ts";
 
 export class RemoteStocks implements Stocks {
     /**
@@ -16,9 +17,27 @@ export class RemoteStocks implements Stocks {
     ) {
     }
 
-    async getStockByName(params: GetStockByNameParams): Promise<GetStockByNameResponse | ErrorResponse> {
+    async getStockByName(params: GetStockByNameParams): Promise<GetStockByNameResponse> {
         const httpResponse = await this.httpClient.request({
             url: this.url + params.stock_name + '/quote',
+            method: 'get',
+        });
+
+        switch (httpResponse.statusCode) {
+            case HttpStatusCode.ok:
+                return httpResponse.body;
+            case HttpStatusCode.unauthorized:
+                throw new InvalidCredentialsError();
+            case HttpStatusCode.forbidden:
+                throw new ForbiddenError();
+            default:
+                throw new UnexpectedError(httpResponse.body?.message);
+        }
+    }
+
+    async getStockHistory(params: GetStockHistoryParams): Promise<GetStockHistoryResponse> {
+        const httpResponse = await this.httpClient.request({
+            url: this.url + params.stock_name + '/history?from=' + params.from + '&to=' + params.to,
             method: 'get',
         });
 
