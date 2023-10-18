@@ -13,6 +13,13 @@ export const Header = styled.div`
   border-bottom: 1px solid ${({theme}) => theme.colors.border_dark};
 `;
 
+export const ViewInformationAndDate = styled.div`
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+`;
+
+
 export const Title = styled.p`
   font-size: ${({theme}) => theme.sizes.xl}px;
   color: ${({theme}) => theme.colors.white};

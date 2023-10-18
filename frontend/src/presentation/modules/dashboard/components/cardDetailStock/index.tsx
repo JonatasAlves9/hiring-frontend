@@ -1,7 +1,17 @@
-import {Content, ContentChart, DescriptionValueStock, Header, Title, ValueStock, Wrapper} from "./styles.ts";
+import {
+    Content,
+    ContentChart,
+    DescriptionValueStock,
+    Header,
+    Title,
+    ValueStock,
+    ViewInformationAndDate,
+    Wrapper
+} from "./styles.ts";
 import ChartLineHistory from "../chartLineHistory";
 import {GetStockByNameResponse} from "../../../../../domain/models";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
+import {ButtonsDate} from "../buttonsDate";
 
 interface IProps {
     stockDetail: GetStockByNameResponse
@@ -14,8 +24,13 @@ export const CardDetailStock = ({stockDetail}: IProps) => {
                 <Title>{stockDetail.name}</Title>
             </Header>
             <Content>
-                <ValueStock>{formatCurrency(stockDetail.lastPrice)}</ValueStock>
-                <DescriptionValueStock>Valor Atual</DescriptionValueStock>
+                <ViewInformationAndDate>
+                    <div>
+                        <ValueStock>{formatCurrency(stockDetail.lastPrice)}</ValueStock>
+                        <DescriptionValueStock>Valor Atual</DescriptionValueStock>
+                    </div>
+                    <ButtonsDate/>
+                </ViewInformationAndDate>
                 <ContentChart>
                     <ChartLineHistory/>
                 </ContentChart>
