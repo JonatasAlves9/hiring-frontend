@@ -1,12 +1,14 @@
-import {createBrowserRouter} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
+import {PageWrapper} from "../../presentation/layout/pageWrapper";
+import {Dashboard} from "../../presentation/modules/dashboard";
 
 
-export const routes = createBrowserRouter([
-    {
-        path: "/",
-        element: <div>Hello world!</div>,
-    },
-]);
-
-
-
+export const Router = () => {
+    return (
+        <Routes>
+            <Route path="/" element={<PageWrapper />}>
+                <Route path="/" element={<Dashboard/>} />
+            </Route>
+        </Routes>
+    )
+}
