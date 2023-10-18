@@ -36,4 +36,5 @@ export const DescriptionValueStock = styled.p`
 
 export const ContentChart = styled.div`
   width: 100%;
+  margin-top: 30px;
 `;

@@ -11,8 +11,3 @@ export const ContentFlex = styled.div`
 
 
 
-export const CardSimulateStock = styled.div`
-  background-color: yellow;
-  height: 200px;
-  flex: .4;
-`;

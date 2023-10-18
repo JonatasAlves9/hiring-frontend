@@ -13,8 +13,8 @@ function ChartLineHistory() {
                 label: 'Vendas em 2023 (em milhares)',
                 data: [10, 20, 15, 30, 25, 35, 30, 25, 35, 35],
                 fill: true,
-                backgroundColor: themeDark.colors.secondary,
-                borderColor: 'rgba(75, 192, 192, 0.2)',
+                backgroundColor: 'rgba(208,218,95,0.2)',
+                borderColor: themeDark.colors.secondary,
             },
         ],
 
