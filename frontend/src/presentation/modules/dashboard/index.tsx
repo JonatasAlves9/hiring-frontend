@@ -25,9 +25,15 @@ export const Dashboard = ({stock}: IProps) => {
         })
     }, [])
 
-    const getHistoryOfStock = useCallback((stock_name: string, from: string, to: string) => {
+    const getHistoryOfStock = useCallback((from: string, to: string) => {
+
+        if (stockDetail === undefined) {
+            return
+        }
+
+
         stock.getStockHistory({
-            stock_name,
+            stock_name: stockDetail.name,
             from,
             to
         }).then((res) => {
@@ -49,7 +55,7 @@ export const Dashboard = ({stock}: IProps) => {
                     <>
                         <IconBack/>
                         <ContentFlex>
-                            <CardDetailStock stockDetail={{
+                            <CardDetailStock getHistoryOfStock={getHistoryOfStock} stockDetail={{
                                 name: 'VAL',
                                 lastPrice: 70,
                                 pricedAt: '2022-11-03'

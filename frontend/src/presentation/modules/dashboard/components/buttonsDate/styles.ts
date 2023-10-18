@@ -11,14 +11,14 @@ export const Wrapper = styled.div`
   gap: 10px;
 `;
 
-export const Date = styled.p<IDate>`
+export const DateLabel = styled.p<IDate>`
   font-size: ${({theme}) => theme.sizes.xs}px;
   color: ${({theme, isActive}) => isActive ? theme.colors.secondary : theme.colors.white};
   cursor: pointer;
   padding: 10px;
 `;
-export const Icon = styled(FontAwesomeIcon)`
-  color: ${({theme}) => theme.colors.white};
+export const Icon = styled(FontAwesomeIcon)<IDate>`
+  color: ${({theme, isActive}) => isActive ? theme.colors.secondary : theme.colors.white};
   padding: 10px;
   cursor: pointer;
   font-size: ${({theme}) => theme.sizes.sm}px;

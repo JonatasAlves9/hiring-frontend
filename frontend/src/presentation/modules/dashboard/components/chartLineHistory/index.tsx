@@ -73,7 +73,6 @@ function ChartLineHistory({stockHistory}: IProps) {
                         return null; // Retornando null para o callback padrão
                     },
                     afterBody: function (item: any) {
-                        console.log(item)
                         const max = item[0].parsed.y; // ou algum código para extrair o valor máximo
                         const min = item[0].parsed.x; // ou algum código para extrair o valor mínimo
                         const closed = item[1].raw; // ou algum código para extrair o valor mínimo

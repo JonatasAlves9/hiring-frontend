@@ -17,9 +17,10 @@ import {GetStockHistoryResponse} from "../../../../../domain/models/get-stock-hi
 interface IProps {
     stockDetail: GetStockByNameResponse
     stockHistory: GetStockHistoryResponse
+    getHistoryOfStock: (from: string, to: string) => void
 }
 
-export const CardDetailStock = ({stockDetail, stockHistory}: IProps) => {
+export const CardDetailStock = ({stockDetail, stockHistory, getHistoryOfStock}: IProps) => {
     return (
         <Wrapper>
             <Header>
@@ -31,7 +32,7 @@ export const CardDetailStock = ({stockDetail, stockHistory}: IProps) => {
                         <ValueStock>{formatCurrency(stockDetail.lastPrice)}</ValueStock>
                         <DescriptionValueStock>Valor Atual</DescriptionValueStock>
                     </div>
-                    <ButtonsDate/>
+                    <ButtonsDate getHistoryOfStock={getHistoryOfStock}/>
                 </ViewInformationAndDate>
                 <ContentChart>
                     <ChartLineHistory stockHistory={stockHistory}/>
