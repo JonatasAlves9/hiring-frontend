@@ -10,7 +10,6 @@ export const TopBar = () => {
             </Sides>
             <Center>
                 <ItemMenu/>
-                <ItemMenu/>
             </Center>
             <Sides side={'right'}>
                 <Avatar src={'https://computeronthebeach.com.br/wp-content/uploads/2023/02/adgrowth_preto.png'}/>

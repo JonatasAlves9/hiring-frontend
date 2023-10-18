@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
-  height: 200px;
   flex: .4;
   background-color: ${({theme}) => theme.colors.secondary};
   border-radius: 20px;
@@ -12,6 +11,16 @@ export const Title = styled.p`
   color: ${({theme}) => theme.colors.dark};
   font-weight: bold;
 `;
+
+export const Description = styled.p`
+  font-size: ${({theme}) => theme.sizes.xs}px;
+  color: ${({theme}) => theme.colors.dark};
+`;
+
+export const Content = styled.div`
+  padding: 30px;
+`;
+
 
 export const Header = styled.div`
   height: 20px;
