@@ -1,6 +1,10 @@
+import {Wrapper} from "./styles.ts";
+import {IconBack} from "../../components/iconBack";
 
 export const Dashboard = () => {
     return (
-       <h1>Dashboard</h1>
+        <Wrapper>
+            <IconBack/>
+        </Wrapper>
     )
 }

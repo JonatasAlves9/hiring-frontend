@@ -9,6 +9,7 @@ export interface Colors {
     primary: string;
     secondary: string;
     background: string;
+    dark: string;
     white: string;
 }
 
@@ -29,34 +30,12 @@ export interface Sizes {
     xxl: number;
 }
 
-const themeLight: Theme = {
-    colors: {
-        primary: '#0C5F66',
-        secondary: '#188E81',
-        background: '#FAF9FB',
-        white: '#fff',
-    },
-    fonts: {
-        regular: 'NunitoRegular',
-        bold: 'NunitoBold',
-        semibold: 'NunitoSemiBold',
-        medium: 'NunitoMedium',
-        light: 'NunitoLight',
-    },
-    sizes: {
-        xs: 12,
-        sm: 14,
-        md: 16,
-        lg: 18,
-        xl: 20,
-        xxl: 22,
-    },
-};
 const themeDark: Theme = {
     colors: {
         primary: '#0C5F66',
         secondary: '#D0DA5F',
         white: '#fff',
+        dark: '#1D1D20',
         background: '#141518',
     },
     fonts: {
@@ -76,4 +55,4 @@ const themeDark: Theme = {
     },
 };
 
-export {themeDark, themeLight};
+export {themeDark};
