@@ -1,4 +1,5 @@
-import {Content, DescriptionValueStock, Header, Title, ValueStock, Wrapper} from "./styles.ts";
+import {Content, ContentChart, DescriptionValueStock, Header, Title, ValueStock, Wrapper} from "./styles.ts";
+import ChartLineHistory from "../chartLineHistory";
 
 export const CardDetailStock = () => {
     return (
@@ -9,6 +10,9 @@ export const CardDetailStock = () => {
             <Content>
                 <ValueStock>R$ 26,343.24</ValueStock>
                 <DescriptionValueStock>Valor Atual</DescriptionValueStock>
+                <ContentChart>
+                    <ChartLineHistory/>
+                </ContentChart>
             </Content>
         </Wrapper>
     )

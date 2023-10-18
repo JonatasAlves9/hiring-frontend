@@ -3,7 +3,6 @@ import styled from "styled-components";
 export const Wrapper = styled.div``;
 
 export const ContentFlex = styled.div`
-  height: 200px;
   margin-top: 20px;
   display: flex;
   justify-content: space-between;

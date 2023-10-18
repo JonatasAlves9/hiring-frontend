@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const Wrapper = styled.div`
   background-color: ${({theme}) => theme.colors.dark};
-  height: 200px;
   flex: 1;
   border-radius: 20px;
 `;
@@ -21,7 +20,6 @@ export const Title = styled.p`
 `;
 
 export const Content = styled.div`
-  height: 20px;
   padding: 30px 0;
   margin: 0 40px;
 `;
@@ -34,4 +32,8 @@ export const ValueStock = styled.p`
 export const DescriptionValueStock = styled.p`
   font-size: ${({theme}) => theme.sizes.xs}px;
   color: ${({theme}) => theme.colors.white};
+`;
+
+export const ContentChart = styled.div`
+  width: 100%;
 `;
