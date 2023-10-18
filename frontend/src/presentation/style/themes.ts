@@ -9,6 +9,7 @@ export interface Colors {
     primary: string;
     secondary: string;
     background: string;
+    white: string;
 }
 
 export interface Fonts {
@@ -33,6 +34,7 @@ const themeLight: Theme = {
         primary: '#0C5F66',
         secondary: '#188E81',
         background: '#FAF9FB',
+        white: '#fff',
     },
     fonts: {
         regular: 'NunitoRegular',
@@ -53,7 +55,8 @@ const themeLight: Theme = {
 const themeDark: Theme = {
     colors: {
         primary: '#0C5F66',
-        secondary: '#188E81',
+        secondary: '#D0DA5F',
+        white: '#fff',
         background: '#141518',
     },
     fonts: {
