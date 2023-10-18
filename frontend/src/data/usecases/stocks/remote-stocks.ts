@@ -16,7 +16,7 @@ export class RemoteStocks implements Stocks {
     ) {
     }
 
-    async getPerGroup(params: GetStockByNameParams): Promise<GetStockByNameResponse | ErrorResponse> {
+    async getStockByName(params: GetStockByNameParams): Promise<GetStockByNameResponse | ErrorResponse> {
         const httpResponse = await this.httpClient.request({
             url: this.url + params.stock_name + '/quote',
             method: 'get',

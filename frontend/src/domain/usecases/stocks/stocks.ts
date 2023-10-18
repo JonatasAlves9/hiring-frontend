@@ -1,12 +1,11 @@
-import {ErrorResponse, GetStockByNameResponse} from "../../models/";
+import {GetStockByNameResponse} from "../../models/";
 
 export type GetStockByNameParams = {
     stock_name: string;
 };
 
 export interface Stocks {
-    getPerGroup: (
+    getStockByName: (
         params: GetStockByNameParams,
-    ) => Promise<GetStockByNameResponse | ErrorResponse
-    >;
+    ) => Promise<GetStockByNameResponse>;
 }
