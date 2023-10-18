@@ -1,9 +1,12 @@
-function Router() {
-    return (
-        <p>
-            App
-        </p>
-    )
-}
+import {createBrowserRouter} from "react-router-dom";
 
-export default Router
+
+export const routes = createBrowserRouter([
+    {
+        path: "/",
+        element: <div>Hello world!</div>,
+    },
+]);
+
+
+
