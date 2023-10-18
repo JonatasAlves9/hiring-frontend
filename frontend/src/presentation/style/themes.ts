@@ -54,7 +54,7 @@ const themeDark: Theme = {
     colors: {
         primary: '#0C5F66',
         secondary: '#188E81',
-        background: '#FAF9FB',
+        background: '#141518',
     },
     fonts: {
         regular: 'NunitoRegular',
