@@ -12,12 +12,14 @@ import ChartLineHistory from "../chartLineHistory";
 import {GetStockByNameResponse} from "../../../../../domain/models";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 import {ButtonsDate} from "../buttonsDate";
+import {GetStockHistoryResponse} from "../../../../../domain/models/get-stock-history-response.ts";
 
 interface IProps {
     stockDetail: GetStockByNameResponse
+    stockHistory: GetStockHistoryResponse
 }
 
-export const CardDetailStock = ({stockDetail}: IProps) => {
+export const CardDetailStock = ({stockDetail, stockHistory}: IProps) => {
     return (
         <Wrapper>
             <Header>
@@ -32,7 +34,7 @@ export const CardDetailStock = ({stockDetail}: IProps) => {
                     <ButtonsDate/>
                 </ViewInformationAndDate>
                 <ContentChart>
-                    <ChartLineHistory/>
+                    <ChartLineHistory stockHistory={stockHistory}/>
                 </ContentChart>
             </Content>
         </Wrapper>
