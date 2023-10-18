@@ -1,35 +1,45 @@
-const themeLight = {
+// theme.ts
+export interface Theme {
+    colors: Colors,
+    fonts: Fonts,
+    sizes: Sizes,
+}
+
+export interface Colors {
+    primary: string;
+    secondary: string;
+    background: string;
+}
+
+export interface Fonts {
+    regular: string;
+    bold: string;
+    semibold: string;
+    medium: string,
+    light: string,
+}
+
+export interface Sizes {
+    xs: number;
+    sm: number;
+    md: number;
+    lg: number;
+    xl: number;
+    xxl: number;
+}
+
+const themeLight: Theme = {
     colors: {
         primary: '#0C5F66',
         secondary: '#188E81',
-        info: '#64B2F4',
-        success: '#71E681',
-        greenLight: '#1BAD4C',
-        danger: '#FE9689',
-        warning: '#FFF099',
-        alert: '#FFA50A',
-        error: '#C46564',
-        red: '#FF3D4D',
-        white: '#fff',
-        whiteDark: '#F0F9FA',
-        grey: '#6C868B',
-        greySecondary: '#405B63',
-        greyTabs: '#95a1a2',
-        lightGrey: '#D8E3E2',
-        ultraGrey: '#EDF5F4',
-        grey4: '#E2E2E2',
-        green: '#30CFA0',
-        dark: '#1C394D',
-        backgroundButton: '#FAF9FB',
+        background: '#FAF9FB',
     },
     fonts: {
-        captionRegular: 'CaptionRegular',
         regular: 'NunitoRegular',
         bold: 'NunitoBold',
         semibold: 'NunitoSemiBold',
         medium: 'NunitoMedium',
         light: 'NunitoLight',
-        extra: 'NunitoExtraBold',
     },
     sizes: {
         xs: 12,
@@ -40,39 +50,18 @@ const themeLight = {
         xxl: 22,
     },
 };
-
-const themeDark = {
+const themeDark: Theme = {
     colors: {
         primary: '#0C5F66',
         secondary: '#188E81',
-        info: '#64B2F4',
-        success: '#71E681',
-        greenLight: '#1BAD4C',
-        danger: '#FE9689',
-        warning: '#FFF099',
-        alert: '#FFA50A',
-        error: '#C46564',
-        red: '#FF3D4D',
-        white: '#fff',
-        whiteDark: '#F0F9FA',
-        grey: '#6C868B',
-        greySecondary: '#405B63',
-        greyTabs: '#95a1a2',
-        lightGrey: '#D8E3E2',
-        ultraGrey: '#EDF5F4',
-        grey4: '#E2E2E2',
-        green: '#30CFA0',
-        dark: '#1C394D',
-        backgroundButton: '#FAF9FB',
+        background: '#FAF9FB',
     },
     fonts: {
-        captionRegular: 'CaptionRegular',
         regular: 'NunitoRegular',
         bold: 'NunitoBold',
         semibold: 'NunitoSemiBold',
         medium: 'NunitoMedium',
         light: 'NunitoLight',
-        extra: 'NunitoExtraBold',
     },
     sizes: {
         xs: 12,
