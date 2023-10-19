@@ -17,11 +17,42 @@ export const Header = styled.div`
   align-items: center;
 `;
 
+export const ViewCompareStocks = styled.div`
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+`;
+
+export const InputCompare = styled.input`
+  background-color: #D9D9D9;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  width: 60px;
+`;
 
 export const Icon = styled(FontAwesomeIcon)`
   color: ${({theme}) => theme.colors.white};
   font-size: ${({theme}) => theme.sizes.xs}px;
 `;
+
+export const ButtonCompareAction = styled.div`
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid ${({theme}) => theme.colors.dark};
+  transition: border 0.3s ease;
+
+  &:hover {
+    border: 1px solid ${({theme}) => theme.colors.secondary};;
+  }
+`;
+
 
 export const Button = styled.div`
   justify-content: space-between;

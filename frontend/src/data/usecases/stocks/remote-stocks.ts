@@ -1,5 +1,6 @@
 import {HttpClient, HttpStatusCode} from '../../protocols/http/http-client';
 import {
+    CompareStocksParams,
     GetStockByNameParams,
     GetStockGainsParams,
     GetStockHistoryParams,
@@ -62,6 +63,36 @@ export class RemoteStocks implements Stocks {
     async getStockGains(params: GetStockGainsParams): Promise<GetStockGainsResponse> {
         const httpResponse = await this.httpClient.request({
             url: this.url + params.stock_name + '/gains?purchasedAt=' + params.purchasedAt + '&purchasedAmount=' + params.purchasedAmount,
+            method: 'get',
+        });
+
+        switch (httpResponse.statusCode) {
+            case HttpStatusCode.ok:
+                return httpResponse.body;
+            case HttpStatusCode.unauthorized:
+                throw new InvalidCredentialsError();
+            case HttpStatusCode.forbidden:
+                throw new ForbiddenError();
+            default:
+                throw new UnexpectedError(httpResponse.body?.message);
+        }
+    }
+
+    async compareStocks(params: CompareStocksParams): Promise<GetStockGainsResponse> {
+        const makeParamsUrl = () => {
+            const url = '';
+            params.stocksToCompare.map((item, index) => {
+                if (index === 0) {
+                    url.concat('stocksToCompare[]=' + item)
+                    return
+                }
+                url.concat('&stocksToCompare[]=' + item)
+            })
+            return url
+        }
+
+        const httpResponse = await this.httpClient.request({
+            url: this.url + params.stock_name + '/compare?' + makeParamsUrl(),
             method: 'get',
         });
 

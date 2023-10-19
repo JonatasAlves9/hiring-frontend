@@ -18,10 +18,16 @@ export type GetStockGainsParams = {
     purchasedAmount: string;
 };
 
+export type CompareStocksParams = {
+    stock_name: string;
+    stocksToCompare: string[];
+};
+
 export interface Stocks {
     getStockByName: (
         params: GetStockByNameParams,
     ) => Promise<GetStockByNameResponse>;
     getStockHistory: (params: GetStockHistoryParams) => Promise<GetStockHistoryResponse>
     getStockGains: (params: GetStockGainsParams) => Promise<GetStockGainsResponse>
+    compareStocks: (params: CompareStocksParams) => Promise<GetStockGainsResponse>;
 }

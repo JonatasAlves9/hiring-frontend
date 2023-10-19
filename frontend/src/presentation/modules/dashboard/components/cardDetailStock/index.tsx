@@ -1,11 +1,11 @@
 import {
-    Button, ButtonLabel,
+    Button, ButtonCompareAction, ButtonLabel,
     Content,
     ContentChart,
     DescriptionValueStock,
-    Header, Icon,
+    Header, Icon, InputCompare,
     Title,
-    ValueStock,
+    ValueStock, ViewCompareStocks,
     ViewInformationAndDate,
     Wrapper
 } from "./styles.ts";
@@ -26,7 +26,16 @@ export const CardDetailStock = ({stockDetail, stockHistory, getHistoryOfStock}: 
     return (
         <Wrapper>
             <Header>
-                <Title>{stockDetail.name}</Title>
+                <ViewCompareStocks>
+                    <Title>{stockDetail.name}</Title>
+                    <Icon icon={faCodeCompare}/>
+                    <Title>PETR</Title>
+                    <Icon icon={faCodeCompare}/>
+                    <InputCompare />
+                    <ButtonCompareAction>
+                        <ButtonLabel>Comparar</ButtonLabel>
+                    </ButtonCompareAction>
+                </ViewCompareStocks>
                 <Button>
                     <Icon icon={faCodeCompare}/>
                     <ButtonLabel>Comparar</ButtonLabel>
