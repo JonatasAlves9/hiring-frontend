@@ -2,14 +2,17 @@ import {Line} from 'react-chartjs-2';
 import {Chart, registerables} from 'chart.js';
 import {GetStockHistoryResponse} from "../../../../../domain/models/get-stock-history-response.ts";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
+import {STATUS_REQUEST, StatusRequest} from "../../../../../domain/models/status-request.ts";
+import {LoadingPanel} from "../../../../components/loadingPanel";
 
 Chart.register(...registerables);
 
 interface IProps {
     stockHistory: GetStockHistoryResponse | undefined
+    loading: StatusRequest
 }
 
-function ChartLineHistory({stockHistory}: IProps) {
+function ChartLineHistory({stockHistory, loading}: IProps) {
 
     function extractLabels(stockHistory: any[]) {
         return stockHistory.map(item => formatDate(item.pricedAt || ''));
@@ -85,7 +88,7 @@ function ChartLineHistory({stockHistory}: IProps) {
     };
 
     // @ts-ignore
-    return <Line data={data} options={options} height={100}/>;
+    return loading === STATUS_REQUEST.LOADING ? <LoadingPanel/> : <Line data={data} options={options} height={100}/>;
 }
 
 export default ChartLineHistory;

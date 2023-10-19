@@ -24,6 +24,7 @@ interface StockContextType {
     stocksCompared: CompareStockResponse | undefined;
     resetCompare: () => void,
     loadingStockDetail: StatusRequest
+    loadingStockHistory: StatusRequest
 }
 
 export const StockContext = createContext<StockContextType>({
@@ -38,6 +39,7 @@ export const StockContext = createContext<StockContextType>({
     gainsOfStock: undefined,
     stocksCompared: undefined,
     loadingStockDetail: STATUS_REQUEST.NONE,
+    loadingStockHistory: STATUS_REQUEST.NONE,
 });
 
 export const useStock = () => {
@@ -53,6 +55,7 @@ const StockProvider = ({children, stock}: IProps) => {
     const [stocksToCompare, setStockToCompare] = useState<string[]>([]);
 
     const [loadingStockDetail, setLoadingStockDetail] = useState<StatusRequest>(STATUS_REQUEST.NONE);
+    const [loadingStockHistory, setLoadingStockHistory] = useState<StatusRequest>(STATUS_REQUEST.NONE);
 
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
@@ -69,6 +72,8 @@ const StockProvider = ({children, stock}: IProps) => {
     }, [])
 
     const getHistoryOfStock = useCallback((from: Date, to: Date) => {
+        setLoadingStockHistory(STATUS_REQUEST.LOADING)
+
         if (stockDetail === undefined) {
             return
         }
@@ -79,7 +84,9 @@ const StockProvider = ({children, stock}: IProps) => {
             to
         }).then((res) => {
             setStockHistory(res)
+            setLoadingStockHistory(STATUS_REQUEST.DONE)
         }).catch((err) => {
+            setLoadingStockHistory(STATUS_REQUEST.ERROR)
             toastError(err.message)
         })
     }, [stockDetail])
@@ -138,6 +145,7 @@ const StockProvider = ({children, stock}: IProps) => {
                 getHistoryOfStock,
                 resetCompare,
                 loadingStockDetail,
+                loadingStockHistory,
             }}>
             {children}
         </StockContext.Provider>

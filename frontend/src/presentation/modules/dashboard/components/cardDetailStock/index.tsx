@@ -34,6 +34,7 @@ export const CardDetailStock = () => {
         compareStock,
         stocksCompared,
         resetCompare,
+        loadingStockHistory,
     } = useStock();
 
     return (
@@ -106,12 +107,12 @@ export const CardDetailStock = () => {
                                 <div style={{
                                     flex: 1
                                 }}>
-                                    <ChartLineHistory stockHistory={stockHistory}/>
+                                    <ChartLineHistory stockHistory={stockHistory} loading={loadingStockHistory}/>
                                 </div>
 
                             </div>
                         ) : (
-                            <ChartLineHistory stockHistory={stockHistory}/>)
+                            <ChartLineHistory stockHistory={stockHistory} loading={loadingStockHistory}/>)
                     }
 
                 </ContentChart>
