@@ -1,6 +1,11 @@
 import {RemoteStocks} from "../../../src/data/usecases/stocks/remote-stocks";
 import {HttpClientSpy} from "../mocks/mock-http";
-import {GetStockByNameParams, GetStockHistoryParams, Stocks} from "../../../src/domain/usecases/stocks/stocks";
+import {
+    GetStockByNameParams,
+    GetStockGainsParams,
+    GetStockHistoryParams,
+    Stocks
+} from "../../../src/domain/usecases/stocks/stocks";
 
 type SutTypes = {
     sut: RemoteStocks
@@ -42,6 +47,24 @@ describe('RemoteStocks', () => {
         const expectedUrl = `/stocks/${stock_name}/history?from=${from}&to=${to}`;
 
         await sut.getStockHistory(stockHistoryParams);
+
+        expect(httpClientSpy.url).toBe(expectedUrl);
+        expect(httpClientSpy.method).toBe('get');
+    });
+
+    test('Should call getStockGains with correct URL and params', async () => {
+        const {sut, httpClientSpy} = makeSut('/');
+
+        const stockGainsParams: GetStockGainsParams = {
+            stock_name: 'any_name',
+            purchasedAt: new Date(),
+            purchasedAmount: "10"
+        };
+
+        const {stock_name, purchasedAt, purchasedAmount} = stockGainsParams;
+        const expectedUrl = `/stocks/${stock_name}/gains?purchasedAt=${purchasedAt}&purchasedAmount=${purchasedAmount}`;
+
+        await sut.getStockGains(stockGainsParams);
 
         expect(httpClientSpy.url).toBe(expectedUrl);
         expect(httpClientSpy.method).toBe('get');
