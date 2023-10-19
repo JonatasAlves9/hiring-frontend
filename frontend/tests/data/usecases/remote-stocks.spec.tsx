@@ -1,6 +1,6 @@
 import {RemoteStocks} from "../../../src/data/usecases/stocks/remote-stocks";
 import {HttpClientSpy} from "../mocks/mock-http";
-import {GetStockByNameParams, Stocks} from "../../../src/domain/usecases/stocks/stocks";
+import {GetStockByNameParams, GetStockHistoryParams, Stocks} from "../../../src/domain/usecases/stocks/stocks";
 
 type SutTypes = {
     sut: RemoteStocks
@@ -19,13 +19,31 @@ describe('RemoteStocks', () => {
     test('Should call getStockByName with corrects params', async () => {
         const url = '/stock/any_name/quote'
         const {sut, httpClientSpy} = makeSut('/')
-        const addAccountParams:GetStockByNameParams = {
+        const getStockByNameParams: GetStockByNameParams = {
             stock_name: 'any_name'
         }
 
-        await sut.getStockByName(addAccountParams)
+        await sut.getStockByName(getStockByNameParams)
 
         expect(httpClientSpy.url).toBe(url)
         expect(httpClientSpy.method).toBe('get')
+    });
+
+    test('Should call getStockHistory with correct URL and params', async () => {
+        const {sut, httpClientSpy} = makeSut('/');
+
+        const stockHistoryParams: GetStockHistoryParams = {
+            stock_name: 'any_name',
+            from: new Date(),
+            to: new Date()
+        };
+
+        const {stock_name, from, to} = stockHistoryParams;
+        const expectedUrl = `/stocks/${stock_name}/history?from=${from}&to=${to}`;
+
+        await sut.getStockHistory(stockHistoryParams);
+
+        expect(httpClientSpy.url).toBe(expectedUrl);
+        expect(httpClientSpy.method).toBe('get');
     });
 });

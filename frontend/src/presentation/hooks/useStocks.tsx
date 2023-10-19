@@ -123,7 +123,7 @@ const StockProvider = ({children, stock}: IProps) => {
     }, [stockDetail])
 
     const resetCompare = useCallback(() => {
-        // setStockToCompare([])
+        setStockToCompare([])
         setStockedCompared(undefined)
     }, [setStockToCompare, setStockedCompared])
 
@@ -146,8 +146,7 @@ const StockProvider = ({children, stock}: IProps) => {
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
         }).then((res) => {
-            console.log(stocksToCompare, res.lastPrices)
-            if (stocksToCompare.length + 2 > res.lastPrices.length) {
+            if (stocksToCompare.length + 1 > res.lastPrices.length) {
                 toastError('Ação não encontrada!')
                 setLoadingCompareStock(STATUS_REQUEST.ERROR)
                 return
