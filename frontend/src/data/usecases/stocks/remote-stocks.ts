@@ -31,17 +31,7 @@ export class RemoteStocks implements Stocks {
             method: 'get',
         });
 
-        switch (httpResponse.statusCode) {
-            case HttpStatusCode.ok:
-                return httpResponse.body;
-            case HttpStatusCode.unauthorized:
-                throw new InvalidCredentialsError();
-            case HttpStatusCode.forbidden:
-                throw new ForbiddenError();
-            default:
-                throw new UnexpectedError(httpResponse.body?.message);
-        }
-
+        return this.handleHttpResponse(httpResponse);
     }
 
     async getStockHistory(params: GetStockHistoryParams): Promise<GetStockHistoryResponse> {
@@ -50,16 +40,7 @@ export class RemoteStocks implements Stocks {
             method: 'get',
         });
 
-        switch (httpResponse.statusCode) {
-            case HttpStatusCode.ok:
-                return httpResponse.body;
-            case HttpStatusCode.unauthorized:
-                throw new InvalidCredentialsError();
-            case HttpStatusCode.forbidden:
-                throw new ForbiddenError();
-            default:
-                throw new UnexpectedError(httpResponse.body?.message);
-        }
+        return this.handleHttpResponse(httpResponse);
     }
 
     async getStockGains(params: GetStockGainsParams): Promise<GetStockGainsResponse> {
@@ -68,17 +49,7 @@ export class RemoteStocks implements Stocks {
             method: 'get',
         });
 
-        switch (httpResponse.statusCode) {
-            case HttpStatusCode.ok:
-                return httpResponse.body;
-            case HttpStatusCode.unauthorized:
-                throw new InvalidCredentialsError();
-            case HttpStatusCode.forbidden:
-                throw new ForbiddenError();
-            default:
-                throw new UnexpectedError(httpResponse.body?.message);
-        }
-
+        return this.handleHttpResponse(httpResponse);
     }
 
     async compareStocks(params: CompareStocksParams): Promise<CompareStockResponse> {
@@ -95,6 +66,11 @@ export class RemoteStocks implements Stocks {
             url: this.url + "stocks/" + encodeURIComponent(params.stock_name) + '/compare?' + makeParamsUrl(),
             method: 'get',
         });
+
+        return this.handleHttpResponse(httpResponse);
+    }
+
+    private handleHttpResponse(httpResponse: any): any {
         switch (httpResponse.statusCode) {
             case HttpStatusCode.ok:
                 return httpResponse.body;
