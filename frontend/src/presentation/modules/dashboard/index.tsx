@@ -18,6 +18,7 @@ export const Dashboard = ({stock}: IProps) => {
         "name": "VAL",
         "prices": pricesFake
     });
+    const [stocksToCompare, setStockToCompare] = useState<string[]>([])
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
         stock.getStockByName({
@@ -47,7 +48,6 @@ export const Dashboard = ({stock}: IProps) => {
     }, [])
 
     const getGainsOfStock = useCallback((purchasedAt: string, purchasedAmount: string) => {
-
         if (stockDetail === undefined) {
             return
         }
@@ -58,6 +58,24 @@ export const Dashboard = ({stock}: IProps) => {
             purchasedAmount
         }).then((res) => {
             console.log(res)
+        }).catch((err) => {
+            console.log(err)
+        })
+    }, [])
+
+    const compareStock = useCallback((new_stock_to_compare: string) => {
+        setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
+
+        if (stockDetail === undefined) {
+            return
+        }
+
+        stock.compareStocks({
+            stock_name: stockDetail.name,
+            stocksToCompare: [...stocksToCompare, new_stock_to_compare]
+        }).then((res) => {
+            console.log(res)
+            setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
         }).catch((err) => {
             console.log(err)
         })
@@ -83,6 +101,8 @@ export const Dashboard = ({stock}: IProps) => {
                                     pricedAt: '2022-11-03'
                                 }}
                                 stockHistory={stockHistory}
+                                stocksToCompare={stocksToCompare}
+                                compareStock={compareStock}
                             />
                             <CardSimulateStock getGainsOfStock={getGainsOfStock} gainsOfStock={{
                                 "name": "VAL",

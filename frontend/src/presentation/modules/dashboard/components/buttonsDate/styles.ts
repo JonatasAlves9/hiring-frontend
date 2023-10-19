@@ -17,6 +17,7 @@ export const DateLabel = styled.p<IDate>`
   cursor: pointer;
   padding: 10px;
 `;
+
 export const Icon = styled(FontAwesomeIcon)<IDate>`
   color: ${({theme, isActive}) => isActive ? theme.colors.secondary : theme.colors.white};
   padding: 10px;

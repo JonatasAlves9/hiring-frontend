@@ -1,7 +1,7 @@
-import {DateLabel, Icon, Wrapper} from "./styles.ts";
-import {faCalendar} from "@fortawesome/free-solid-svg-icons";
+import {DateLabel, Wrapper} from "./styles.ts";
 import {useState} from "react";
 import {format, subMonths, subWeeks, subYears} from 'date-fns';
+import {DateRangePicker} from 'rsuite';
 
 enum CalendarButton {
     WEEK = 1,
@@ -16,6 +16,7 @@ interface IProps {
 
 export const ButtonsDate = ({getHistoryOfStock}: IProps) => {
     const [itemSelected, setItemSelected] = useState<CalendarButton>();
+
 
     const labels = [{
         label: '1S',
@@ -77,7 +78,7 @@ export const ButtonsDate = ({getHistoryOfStock}: IProps) => {
                     {item.label}
                 </DateLabel>
             ))}
-            <Icon icon={faCalendar} isActive={itemSelected === 0} onClick={() => handleButtonClick(0)}/>
+            <DateRangePicker placeholder={'Selecione um período'}/>
         </Wrapper>
     )
 }
