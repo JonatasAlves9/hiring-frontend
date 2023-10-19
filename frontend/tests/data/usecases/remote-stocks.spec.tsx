@@ -138,4 +138,21 @@ describe('RemoteStocks', () => {
         expect(httpClientSpy.url).toBe(expectedUrl);
         expect(httpClientSpy.method).toBe('get');
     });
+
+    test('Should call compareStocks with correct URL and params when stocksToCompare is null', async () => {
+        const {sut, httpClientSpy} = makeSut();
+
+        const compareStockParams: CompareStocksParams = {
+            stock_name: 'any_name',
+            stocksToCompare: null
+        };
+
+        const {stock_name} = compareStockParams;
+        const expectedUrl = `/stocks/${stock_name}/compare?`;
+
+        await sut.compareStocks(compareStockParams);
+
+        expect(httpClientSpy.url).toBe(expectedUrl);
+        expect(httpClientSpy.method).toBe('get');
+    });
 });

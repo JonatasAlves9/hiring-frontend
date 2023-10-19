@@ -21,7 +21,7 @@ export type GetStockGainsParams = {
 
 export type CompareStocksParams = {
     stock_name: string;
-    stocksToCompare: string[];
+    stocksToCompare: string[] | null;
 };
 
 export interface Stocks {
