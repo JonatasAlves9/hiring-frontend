@@ -15,12 +15,14 @@ import StockProvider from "../presentation/hooks/useStocks.tsx";
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <ThemeProvider theme={themeDark}>
-            <StockProvider stock={makeStock()}>
-                <BrowserRouter>
-                    <ToastContainer/>
-                    <Router/>
-                </BrowserRouter>
-            </StockProvider>
+            <BrowserRouter>
+                <StockProvider stock={makeStock()}>
+                    <>
+                        <ToastContainer/>
+                        <Router/>
+                    </>
+                </StockProvider>
+            </BrowserRouter>
         </ThemeProvider>
     </React.StrictMode>,
 )

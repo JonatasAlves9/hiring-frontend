@@ -9,7 +9,6 @@ interface IProps {
 export const SearchInput = ({onChange}: IProps) => {
     const [query, setQuery] = useState('');
     return (
-
         <Wrapper onSubmit={(e) => {
             e.preventDefault();
             onChange(query)
@@ -17,7 +16,6 @@ export const SearchInput = ({onChange}: IProps) => {
             <Sides side={'left'}>
                 <Icon icon={faSearch}/>
             </Sides>
-
             <Input placeholder={"Pesquise por uma ação"} autoFocus={true} onChange={(e) => setQuery(e.target.value)}
                    value={query}/>
             <Button onClick={() => onChange(query)}>
@@ -26,7 +24,5 @@ export const SearchInput = ({onChange}: IProps) => {
                 </Sides>
             </Button>
         </Wrapper>
-
-
     )
 }

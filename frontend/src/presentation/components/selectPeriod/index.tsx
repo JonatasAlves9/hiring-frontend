@@ -1,5 +1,5 @@
 import {DateLabel, Wrapper} from "./styles";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {subMonths, subWeeks, subYears} from 'date-fns';
 import {DateRangePicker} from 'rsuite';
 import {useStock} from "../../hooks/useStocks";
@@ -24,7 +24,6 @@ const LABELS: Label[] = [
 
 const getDateRange = (type: Period) => {
     const today = new Date();
-
 
     switch (type) {
         case Period.Week:

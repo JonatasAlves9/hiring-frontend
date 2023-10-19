@@ -6,6 +6,7 @@ import {GetStockGainsResponse} from "../../domain/models/get-stock-gains-respons
 import {CompareStockResponse} from "../../domain/models/compare-stock-response.ts";
 import {toastError} from "../components/toast";
 import {STATUS_REQUEST, StatusRequest} from "../../domain/models/status-request.ts";
+import {useNavigate} from "react-router-dom";
 
 interface IProps {
     children: JSX.Element;
@@ -61,11 +62,12 @@ const StockProvider = ({children, stock}: IProps) => {
 
     const [stocksToCompare, setStockToCompare] = useState<string[]>([]);
 
-    const [loadingStockDetail, setLoadingStockDetail] = useState<StatusRequest>(STATUS_REQUEST.NONE);
+    const [loadingStockDetail, setLoadingStockDetail] = useState<StatusRequest>(STATUS_REQUEST.LOADING);
     const [loadingStockHistory, setLoadingStockHistory] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingStockGains, setLoadingStockGains] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingCompareStock, setLoadingCompareStock] = useState<StatusRequest>(STATUS_REQUEST.NONE);
 
+    const navigate = useNavigate()
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
         setLoadingStockDetail(STATUS_REQUEST.LOADING)
@@ -76,6 +78,7 @@ const StockProvider = ({children, stock}: IProps) => {
             setLoadingStockDetail(STATUS_REQUEST.DONE)
         }).catch((err) => {
             toastError(err.message)
+            navigate('/')
             setLoadingStockDetail(STATUS_REQUEST.ERROR)
         })
     }, [])
