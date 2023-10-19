@@ -15,7 +15,7 @@ export type GetStockHistoryParams = {
 
 export type GetStockGainsParams = {
     stock_name: string;
-    purchasedAt: string;
+    purchasedAt: Date;
     purchasedAmount: string;
 };
 

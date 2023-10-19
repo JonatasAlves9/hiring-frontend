@@ -576,6 +576,13 @@
   dependencies:
     "@types/react" "*"
 
+"@types/react-input-mask@^3.0.4":
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/@types/react-input-mask/-/react-input-mask-3.0.4.tgz#8e62082b408efff34f04c26955bba3489cc5b6a8"
+  integrity sha512-7seCjKB+bRttL51c3xDlzh62cDABQc0rzlAXduWirFZdg7Wx7mxRDdviSSUpkU4ON8NTFxiPHOi4w+pk1U31sg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react-window@^1.8.5":
   version "1.8.7"
   resolved "https://registry.yarnpkg.com/@types/react-window/-/react-window-1.8.7.tgz#742a5e00b7aa45c9f0afc1be8c7b562a36950e8a"

@@ -15,13 +15,14 @@ import {
     ViewValue,
     Wrapper
 } from "./styles.ts";
-import {InputCurrency} from "../../../../components/inputCurrency";
+import {InputQuantity} from "../../../../components/input";
 import {InputDate} from "../../../../components/inputDate";
 import {Button} from "../../../../components/button";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 import {useFormik} from 'formik';
 import * as yup from 'yup';
 import {useStock} from "../../../../hooks/useStocks.tsx";
+import {STATUS_REQUEST} from "../../../../../domain/models/status-request.ts";
 
 
 export const CardSimulateStock = () => {
@@ -29,13 +30,17 @@ export const CardSimulateStock = () => {
     const {
         getGainsOfStock,
         gainsOfStock,
+        loadingStockGains,
     } = useStock();
 
     const handleSubmit = (values: {
         currency: string,
         date: string
     }) => {
-        getGainsOfStock(values.date, values.currency)
+        const [year, month, day] = values.date.split('-').map(Number);
+        const localDate = new Date(year, month - 1, day);
+
+        getGainsOfStock(localDate, values.currency)
     }
 
     const validationSchema = yup.object({
@@ -64,9 +69,10 @@ export const CardSimulateStock = () => {
             </Header>
             <Content>
                 <form onSubmit={formik.handleSubmit}>
-                    <InputCurrency
+                    <InputQuantity
                         onChange={formik.handleChange}
                         onBlur={formik.handleBlur}
+                        value={formik.values.currency}
                         name="currency"
                     />
 
@@ -85,14 +91,14 @@ export const CardSimulateStock = () => {
                         <Feedback>{formik.errors.date}</Feedback>
                     ) : null}
 
-                    <Button onClick={() => formik.handleSubmit()}/>
+                    <Button onClick={() => formik.handleSubmit()} loading={loadingStockGains === STATUS_REQUEST.LOADING}/>
                 </form>
                 {
                     gainsOfStock && (
                         <ContentResult>
                             <HeaderResult>
-                                <TitleResult>AVA</TitleResult>
-                                <DescriptionResult>{gainsOfStock.purchasedAt}</DescriptionResult>
+                                <TitleResult>{gainsOfStock.name}</TitleResult>
+                                <DescriptionResult>Data da simulação: {gainsOfStock.purchasedAt}</DescriptionResult>
                             </HeaderResult>
 
                             <ViewPrices>

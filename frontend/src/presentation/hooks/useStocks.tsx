@@ -18,13 +18,14 @@ interface StockContextType {
     stocksToCompare: string[] | undefined;
     getDetailAboutStock: (stock_name: string) => void;
     getHistoryOfStock: (from: Date, to: Date) => void;
-    getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
+    getGainsOfStock: (purchasedAt: Date, purchasedAmount: string) => void;
     compareStock: (new_stock_to_compare: string) => void;
     gainsOfStock: GetStockGainsResponse | undefined;
     stocksCompared: CompareStockResponse | undefined;
     resetCompare: () => void,
     loadingStockDetail: StatusRequest
     loadingStockHistory: StatusRequest
+    loadingStockGains: StatusRequest
 }
 
 export const StockContext = createContext<StockContextType>({
@@ -40,6 +41,7 @@ export const StockContext = createContext<StockContextType>({
     stocksCompared: undefined,
     loadingStockDetail: STATUS_REQUEST.NONE,
     loadingStockHistory: STATUS_REQUEST.NONE,
+    loadingStockGains: STATUS_REQUEST.NONE,
 });
 
 export const useStock = () => {
@@ -56,6 +58,7 @@ const StockProvider = ({children, stock}: IProps) => {
 
     const [loadingStockDetail, setLoadingStockDetail] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingStockHistory, setLoadingStockHistory] = useState<StatusRequest>(STATUS_REQUEST.NONE);
+    const [loadingStockGains, setLoadingStockGains] = useState<StatusRequest>(STATUS_REQUEST.NONE);
 
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
@@ -91,7 +94,8 @@ const StockProvider = ({children, stock}: IProps) => {
         })
     }, [stockDetail])
 
-    const getGainsOfStock = useCallback((purchasedAt: string, purchasedAmount: string) => {
+    const getGainsOfStock = useCallback((purchasedAt: Date, purchasedAmount: string) => {
+        setLoadingStockGains(STATUS_REQUEST.LOADING)
 
         if (stockDetail === undefined) {
             return
@@ -103,8 +107,12 @@ const StockProvider = ({children, stock}: IProps) => {
             purchasedAmount
         }).then((res) => {
             setGainsOfStock(res)
+            setLoadingStockGains(STATUS_REQUEST.DONE)
+
         }).catch((err) => {
             toastError(err.message)
+            setLoadingStockGains(STATUS_REQUEST.ERROR)
+
         })
     }, [stockDetail])
 
@@ -119,7 +127,6 @@ const StockProvider = ({children, stock}: IProps) => {
         if (stockDetail === undefined) {
             return
         }
-
         stock.compareStocks({
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
@@ -127,6 +134,7 @@ const StockProvider = ({children, stock}: IProps) => {
             setStockedCompared(res)
         }).catch((err) => {
             toastError(err.message)
+
         })
     }, [stockDetail])
 
@@ -146,6 +154,7 @@ const StockProvider = ({children, stock}: IProps) => {
                 resetCompare,
                 loadingStockDetail,
                 loadingStockHistory,
+                loadingStockGains,
             }}>
             {children}
         </StockContext.Provider>
