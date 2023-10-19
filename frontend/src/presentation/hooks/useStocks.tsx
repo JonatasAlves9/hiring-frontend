@@ -23,6 +23,7 @@ interface StockContextType {
     gainsOfStock: GetStockGainsResponse | undefined;
     stocksCompared: CompareStockResponse | undefined;
     resetCompare: () => void,
+    resetStock: () => void,
     loadingStockDetail: StatusRequest
     loadingStockHistory: StatusRequest
     loadingStockGains: StatusRequest
@@ -38,12 +39,13 @@ export const StockContext = createContext<StockContextType>({
     getGainsOfStock: () => null,
     compareStock: () => null,
     resetCompare: () => null,
+    resetStock: () => null,
     gainsOfStock: undefined,
     stocksCompared: undefined,
     loadingStockDetail: STATUS_REQUEST.NONE,
     loadingStockHistory: STATUS_REQUEST.NONE,
     loadingStockGains: STATUS_REQUEST.NONE,
-    loadingCompareStock:  STATUS_REQUEST.NONE,
+    loadingCompareStock: STATUS_REQUEST.NONE,
 
 });
 
@@ -63,7 +65,6 @@ const StockProvider = ({children, stock}: IProps) => {
     const [loadingStockHistory, setLoadingStockHistory] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingStockGains, setLoadingStockGains] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingCompareStock, setLoadingCompareStock] = useState<StatusRequest>(STATUS_REQUEST.NONE);
-
 
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
@@ -126,6 +127,13 @@ const StockProvider = ({children, stock}: IProps) => {
         setStockedCompared(undefined)
     }
 
+    const resetStock = useCallback(()=> {
+        setStockDetail(undefined)
+        setGainsOfStock(undefined)
+        setStockedCompared(undefined)
+        setGainsOfStock(undefined)
+    },[setStockDetail,setGainsOfStock,setStockedCompared, setGainsOfStock ])
+
     const compareStock = useCallback((new_stock_to_compare: string) => {
 
         if (stockDetail === undefined || new_stock_to_compare === '') {
@@ -165,6 +173,7 @@ const StockProvider = ({children, stock}: IProps) => {
                 loadingStockHistory,
                 loadingStockGains,
                 loadingCompareStock,
+                resetStock,
             }}>
             {children}
         </StockContext.Provider>

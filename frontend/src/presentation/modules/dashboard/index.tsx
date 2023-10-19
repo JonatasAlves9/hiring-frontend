@@ -33,7 +33,8 @@ export const Dashboard = () => {
     const {
         stockDetail,
         getDetailAboutStock,
-        loadingStockDetail
+        loadingStockDetail,
+        resetStock
     } = useStock();
 
     return (
@@ -41,7 +42,7 @@ export const Dashboard = () => {
             {
                 stockDetail ? (
                     <>
-                        <IconBack/>
+                        <IconBack onPress={() => resetStock()}/>
                         <ContentFlex>
                             <CardDetailStock/>
                             <CardSimulateStock/>
