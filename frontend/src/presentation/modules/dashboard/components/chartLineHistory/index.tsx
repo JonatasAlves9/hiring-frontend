@@ -75,8 +75,8 @@ const ChartLineHistory: React.FC<IProps> = ({stockHistory = {prices: []}, loadin
                         return null;
                     },
                     afterBody: function (item: any) {
-                        const max = item[0].parsed.y;
-                        const min = item[0].parsed.x;
+                        const max = item[0].raw[1];
+                        const min = item[0].raw[0];
                         const closed = item[1].raw;
 
                         return [
