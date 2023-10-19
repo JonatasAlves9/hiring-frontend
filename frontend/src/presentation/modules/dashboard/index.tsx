@@ -1,4 +1,4 @@
-import {ContentFlex, Wrapper} from "./styles.ts";
+import {ContentFlex, LogoSearch, Wrapper} from "./styles.ts";
 import {IconBack} from "../../components/iconBack";
 import {CardDetailStock} from "./components/cardDetailStock";
 import {CardSimulateStock} from "./components/cardSimulateStock";
@@ -7,6 +7,7 @@ import {Stocks} from "../../../domain/usecases/stocks/stocks.ts";
 import {GetStockByNameResponse} from "../../../domain/models";
 import {GetStockHistoryResponse} from "../../../domain/models/get-stock-history-response.ts";
 import {pricesFake} from "./fakedata/prices.ts";
+import {SearchInput} from "./components/searchInput";
 
 interface IProps {
     stock: Stocks
@@ -89,17 +90,13 @@ export const Dashboard = ({stock}: IProps) => {
     return (
         <Wrapper>
             {
-                !stockDetail ? (
+                stockDetail ? (
                     <>
                         <IconBack/>
                         <ContentFlex>
                             <CardDetailStock
                                 getHistoryOfStock={getHistoryOfStock}
-                                stockDetail={{
-                                    name: 'VAL',
-                                    lastPrice: 70,
-                                    pricedAt: '2022-11-03'
-                                }}
+                                stockDetail={stockDetail}
                                 stockHistory={stockHistory}
                                 stocksToCompare={stocksToCompare}
                                 compareStock={compareStock}
@@ -114,7 +111,27 @@ export const Dashboard = ({stock}: IProps) => {
                             }}/>
                         </ContentFlex>
                     </>
-                ) : null
+                ) : (
+                    <div>
+                        <div style={{
+                            marginTop: 200,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}>
+                            <LogoSearch
+                                src={'https://quickin-media-production.s3.sa-east-1.amazonaws.com/KjWrSm01yF3aXlitW59fK9rusARuomEudxA2Ph35mdJKTq1kM7pK4fnLpfqffK3N/ADGROWTH-HOR-ROXO-PRETO_1.png'}/>
+                        </div>
+                        <div style={{
+                            marginTop: 80,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center"
+                        }}>
+                            <SearchInput onChange={getDetailAboutStock}/>
+                        </div>
+                    </div>
+                )
             }
         </Wrapper>
     )

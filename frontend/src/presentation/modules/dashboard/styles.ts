@@ -9,5 +9,6 @@ export const ContentFlex = styled.div`
   gap: 30px;
 `;
 
-
-
+export const LogoSearch = styled.img`
+ width: 420px;
+`;
