@@ -1,29 +1,81 @@
 import {RemoteStocks} from "../../../src/data/usecases/stocks/remote-stocks";
 import {HttpClientSpy} from "../mocks/mock-http";
 import {
+    CompareStocksParams,
     GetStockByNameParams,
     GetStockGainsParams,
     GetStockHistoryParams,
     Stocks
 } from "../../../src/domain/usecases/stocks/stocks";
+import {HttpStatusCode} from "../../../src/data/protocols/http/http-client";
+import {ForbiddenError, InvalidCredentialsError, UnexpectedError} from "../../../src/domain/errors";
 
 type SutTypes = {
     sut: RemoteStocks
     httpClientSpy: HttpClientSpy<Stocks>
 };
 
-const makeSut = (url: string = 'any_url'): SutTypes => {
+const makeSut = (): SutTypes => {
     const httpClientSpy = new HttpClientSpy<Stocks>()
-    const sut = new RemoteStocks(url, httpClientSpy)
+    const sut = new RemoteStocks('/', httpClientSpy)
     return {
         sut,
         httpClientSpy
     }
 };
+
+describe('RemoteStocks handleHttpResponse', () => {
+    let sut: RemoteStocks;
+    let httpClientSpy: HttpClientSpy<any>;
+
+    beforeEach(() => {
+        httpClientSpy = new HttpClientSpy();
+        sut = new RemoteStocks('any_url', httpClientSpy);
+    });
+
+    test('Should return the body for 200 OK', async () => {
+        httpClientSpy.response = {
+            statusCode: HttpStatusCode.ok,
+            body: 'any_data'
+        };
+
+        const result = sut['handleHttpResponse'](httpClientSpy.response);
+
+        expect(result).toBe('any_data');
+    });
+
+    test('Should throw InvalidCredentialsError for 401 UNAUTHORIZED', async () => {
+        httpClientSpy.response = {
+            statusCode: HttpStatusCode.unauthorized,
+            body: 'any_error'
+        };
+
+        expect(() => sut['handleHttpResponse'](httpClientSpy.response)).toThrow(InvalidCredentialsError);
+    });
+
+    test('Should throw ForbiddenError for 403 FORBIDDEN', async () => {
+        httpClientSpy.response = {
+            statusCode: HttpStatusCode.forbidden,
+            body: 'any_error'
+        };
+
+        expect(() => sut['handleHttpResponse'](httpClientSpy.response)).toThrow(ForbiddenError);
+    });
+
+    test('Should throw UnexpectedError for any other status code', async () => {
+        httpClientSpy.response = {
+            statusCode: HttpStatusCode.badRequest,
+            body: { message: 'any_error' }
+        };
+
+        expect(() => sut['handleHttpResponse'](httpClientSpy.response)).toThrow(UnexpectedError);
+    });
+});
+
 describe('RemoteStocks', () => {
     test('Should call getStockByName with corrects params', async () => {
         const url = '/stock/any_name/quote'
-        const {sut, httpClientSpy} = makeSut('/')
+        const {sut, httpClientSpy} = makeSut()
         const getStockByNameParams: GetStockByNameParams = {
             stock_name: 'any_name'
         }
@@ -35,7 +87,7 @@ describe('RemoteStocks', () => {
     });
 
     test('Should call getStockHistory with correct URL and params', async () => {
-        const {sut, httpClientSpy} = makeSut('/');
+        const {sut, httpClientSpy} = makeSut();
 
         const stockHistoryParams: GetStockHistoryParams = {
             stock_name: 'any_name',
@@ -53,7 +105,7 @@ describe('RemoteStocks', () => {
     });
 
     test('Should call getStockGains with correct URL and params', async () => {
-        const {sut, httpClientSpy} = makeSut('/');
+        const {sut, httpClientSpy} = makeSut();
 
         const stockGainsParams: GetStockGainsParams = {
             stock_name: 'any_name',
@@ -65,6 +117,23 @@ describe('RemoteStocks', () => {
         const expectedUrl = `/stocks/${stock_name}/gains?purchasedAt=${purchasedAt}&purchasedAmount=${purchasedAmount}`;
 
         await sut.getStockGains(stockGainsParams);
+
+        expect(httpClientSpy.url).toBe(expectedUrl);
+        expect(httpClientSpy.method).toBe('get');
+    });
+
+    test('Should call compareStocks with correct URL and params', async () => {
+        const {sut, httpClientSpy} = makeSut();
+
+        const compareStockParams: CompareStocksParams = {
+            stock_name: 'any_name',
+            stocksToCompare: ['any_stock1', 'any_stock2']
+        };
+
+        const {stock_name, stocksToCompare} = compareStockParams;
+        const expectedUrl = `/stocks/${stock_name}/compare?stocksToCompare[]=${stocksToCompare[0]}&stocksToCompare[]=${stocksToCompare[1]}`;
+
+        await sut.compareStocks(compareStockParams);
 
         expect(httpClientSpy.url).toBe(expectedUrl);
         expect(httpClientSpy.method).toBe('get');

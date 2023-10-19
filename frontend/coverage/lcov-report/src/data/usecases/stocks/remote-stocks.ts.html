@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.16% </span>
+                <span class="strong">95.83% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/24</span>
+                <span class='fraction'>23/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">14.28% </span>
+                <span class="strong">85.71% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/7</span>
+                <span class='fraction'>6/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>8/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">56.52% </span>
+                <span class="strong">95.65% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/23</span>
+                <span class='fraction'>22/23</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -170,8 +170,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,33 +203,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -287,34 +287,34 @@ export class RemoteStocks implements Stocks {
         return this.handleHttpResponse(httpResponse);
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    async </span>compareStocks(params: CompareStocksParams): Promise&lt;CompareStockResponse&gt; {
-        const makeParamsUrl = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            <span class="missing-if-branch" title="if path not taken" >I</span>if (!params.stocksToCompare || !Array.isArray(params.stocksToCompare)) {</span>
+    async compareStocks(params: CompareStocksParams): Promise&lt;CompareStockResponse&gt; {
+        const makeParamsUrl = () =&gt; {
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!params.stocksToCompare || !Array.isArray(params.stocksToCompare)) {
 <span class="cstat-no" title="statement not covered" >                return '';</span>
             }
 &nbsp;
-            const paramParts = <span class="cstat-no" title="statement not covered" >params.stocksToCompare.map(<span class="fstat-no" title="function not covered" >item </span>=&gt; <span class="cstat-no" title="statement not covered" >'stocksToCompare[]=' + encodeURIComponent(item))</span>;</span>
-<span class="cstat-no" title="statement not covered" >            return paramParts.join('&amp;');</span>
+            const paramParts = params.stocksToCompare.map(item =&gt; 'stocksToCompare[]=' + encodeURIComponent(item));
+            return paramParts.join('&amp;');
         }
 &nbsp;
-        const httpResponse = <span class="cstat-no" title="statement not covered" >await this.httpClient.request({</span>
+        const httpResponse = await this.httpClient.request({
             url: this.url + "stocks/" + encodeURIComponent(params.stock_name) + '/compare?' + makeParamsUrl(),
             method: 'get',
         });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        return this.handleHttpResponse(httpResponse);</span>
+        return this.handleHttpResponse(httpResponse);
     }
 &nbsp;
     private handleHttpResponse(httpResponse: any): any {
         switch (httpResponse.statusCode) {
             case HttpStatusCode.ok:
                 return httpResponse.body;
-<span class="branch-1 cbranch-no" title="branch not covered" >            case HttpStatusCode.unauthorized:</span>
-<span class="cstat-no" title="statement not covered" >                throw new InvalidCredentialsError();</span>
-<span class="branch-2 cbranch-no" title="branch not covered" >            case HttpStatusCode.forbidden:</span>
-<span class="cstat-no" title="statement not covered" >                throw new ForbiddenError();</span>
-<span class="branch-3 cbranch-no" title="branch not covered" >            default:</span>
-<span class="cstat-no" title="statement not covered" >                throw new UnexpectedError(httpResponse.body?.message);</span>
+            case HttpStatusCode.unauthorized:
+                throw new InvalidCredentialsError();
+            case HttpStatusCode.forbidden:
+                throw new ForbiddenError();
+            default:
+                throw new UnexpectedError(httpResponse.body?.message);
         }
     }
 }
@@ -325,7 +325,7 @@ export class RemoteStocks implements Stocks {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-10-19T20:18:27.661Z
+                at 2023-10-19T20:26:50.136Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
