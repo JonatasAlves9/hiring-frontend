@@ -5,7 +5,7 @@ import {
 } from "./styles.ts";
 import ChartLineHistory from "../chartLineHistory";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
-import {ButtonsDate} from "../buttonsDate";
+import {SelectPeriod} from "../../../../components/selectPeriod";
 import {faCodeCompare} from '@fortawesome/free-solid-svg-icons';
 import React, {useState} from "react";
 import {useStock} from "../../../../hooks/useStocks.tsx";
@@ -83,7 +83,7 @@ export const CardDetailStock: React.FC = () => {
                         <ValueStock>{formatCurrency(stockDetail?.lastPrice || 0)}</ValueStock>
                         <DescriptionValueStock>Valor Atual</DescriptionValueStock>
                     </div>
-                    <ButtonsDate/>
+                    <SelectPeriod/>
                 </ViewInformationAndDate>
                 <ContentChart>
                     {stocksToCompare.length > 0 ?
