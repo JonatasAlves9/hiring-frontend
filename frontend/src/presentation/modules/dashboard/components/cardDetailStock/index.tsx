@@ -16,7 +16,7 @@ import {GetStockHistoryResponse} from "../../../../../domain/models/get-stock-hi
 
 interface IProps {
     stockDetail: GetStockByNameResponse
-    stockHistory: GetStockHistoryResponse
+    stockHistory: GetStockHistoryResponse | undefined
     getHistoryOfStock: (from: string, to: string) => void
 }
 

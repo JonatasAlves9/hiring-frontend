@@ -6,24 +6,24 @@ import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 Chart.register(...registerables);
 
 interface IProps {
-    stockHistory: GetStockHistoryResponse
+    stockHistory: GetStockHistoryResponse | undefined
 }
 
 function ChartLineHistory({stockHistory}: IProps) {
 
-    function extractLabels(stockHistory: GetStockHistoryResponse) {
-        return stockHistory.prices.map(item => formatDate(item.pricedAt || ''));
+    function extractLabels(stockHistory: any[]) {
+        return stockHistory.map(item => formatDate(item.pricedAt || ''));
     }
 
-    function extractDataHighLow(stockHistory: GetStockHistoryResponse) {
-        return stockHistory.prices.map(item => [item.low, item.high]);
+    function extractDataHighLow(data: any[]) {
+        return data.map(item => [item.low, item.high]);
     }
 
-    function extractClosing(stockHistory: GetStockHistoryResponse) {
-        return stockHistory.prices.map(item => item.closing);
+    function extractClosing(data: any[]) {
+        return data.map(item => item.closing);
     }
 
-    const labels = extractLabels(stockHistory);
+    const labels = extractLabels(stockHistory?.prices || []);
 
     function formatDate(dateString: string) {
         const [year, month, day] = dateString.split('-');
@@ -38,7 +38,7 @@ function ChartLineHistory({stockHistory}: IProps) {
                 type: 'bar' as const,
                 label: 'Máxima e Mínima',
                 backgroundColor: 'rgba(75, 192, 192, .1)',
-                data: extractDataHighLow(stockHistory),
+                data: extractDataHighLow(stockHistory?.prices || []),
                 borderColor: 'rgba(75, 192, 192, .3)',
                 borderWidth: 2,
             },
@@ -49,7 +49,7 @@ function ChartLineHistory({stockHistory}: IProps) {
                 borderWidth: 2,
                 backgroundColor: 'rgba(208,218,95,0.10)',
                 fill: true,
-                data: extractClosing(stockHistory),
+                data: extractClosing(stockHistory?.prices || []),
             },
         ],
     };
@@ -70,12 +70,12 @@ function ChartLineHistory({stockHistory}: IProps) {
             tooltip: {
                 callbacks: {
                     label: function () {
-                        return null; // Retornando null para o callback padrão
+                        return null;
                     },
                     afterBody: function (item: any) {
-                        const max = item[0].parsed.y; // ou algum código para extrair o valor máximo
-                        const min = item[0].parsed.x; // ou algum código para extrair o valor mínimo
-                        const closed = item[1].raw; // ou algum código para extrair o valor mínimo
+                        const max = item[0].parsed.y;
+                        const min = item[0].parsed.x;
+                        const closed = item[1].raw;
 
                         return [`Valor de fechamento: ${formatCurrency(closed)}`, `Máxima: ${formatCurrency(max)}`, `Mínima: ${formatCurrency(min)}`];
                     },

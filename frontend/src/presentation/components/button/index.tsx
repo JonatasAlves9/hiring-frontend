@@ -1,8 +1,12 @@
+import React from "react";
 import {Label, Wrapper} from "./styles.ts";
 
-export const Button = () => {
+interface IProps extends React.HTMLProps<HTMLDivElement> {
+}
+
+export const Button = ({...rest}: IProps) => {
     return (
-        <Wrapper>
+        <Wrapper {...rest}>
             <Label>Projetar</Label>
         </Wrapper>
     )

@@ -3,7 +3,16 @@ import {InputCurrency} from "../../../../components/inputCurrency";
 import {InputDate} from "../../../../components/inputDate";
 import {Button} from "../../../../components/button";
 
-export const CardSimulateStock = () => {
+interface IProps {
+    getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
+}
+
+export const CardSimulateStock = ({getGainsOfStock}: IProps) => {
+
+    const handleSubmit = () => {
+        getGainsOfStock('', '')
+    }
+
     return (
         <Wrapper>
             <Header>
@@ -14,7 +23,7 @@ export const CardSimulateStock = () => {
             <Content>
                 <InputCurrency/>
                 <InputDate/>
-                <Button/>
+                <Button onClick={() => handleSubmit()}/>
             </Content>
         </Wrapper>
     )
