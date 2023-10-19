@@ -92,7 +92,7 @@ export class RemoteStocks implements Stocks {
         }
 
         const httpResponse = await this.httpClient.request({
-            url: this.url + encodeURIComponent(params.stock_name) + '/compare?' + makeParamsUrl(),
+            url: this.url + "stocks/" + encodeURIComponent(params.stock_name) + '/compare?' + makeParamsUrl(),
             method: 'get',
         });
         switch (httpResponse.statusCode) {
