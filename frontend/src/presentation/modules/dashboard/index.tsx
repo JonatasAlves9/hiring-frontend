@@ -10,7 +10,6 @@ export const Dashboard = () => {
     const {
         stockDetail,
         getDetailAboutStock,
-        getGainsOfStock
     } = useStock();
 
     return (
@@ -21,14 +20,7 @@ export const Dashboard = () => {
                         <IconBack/>
                         <ContentFlex>
                             <CardDetailStock/>
-                            <CardSimulateStock getGainsOfStock={getGainsOfStock} gainsOfStock={{
-                                "name": "VAL",
-                                "lastPrice": 62.83,
-                                "priceAtDate": 62.92,
-                                "purchasedAmount": 10.5,
-                                "purchasedAt": "2022-11-01",
-                                "capitalGains": -0.9449999999999363
-                            }}/>
+                            <CardSimulateStock/>
                         </ContentFlex>
                     </>
                 ) : (

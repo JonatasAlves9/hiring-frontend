@@ -1,29 +1,35 @@
 import {
-    Content, ContentResult,
-    Description, DescriptionResult, Feedback,
+    Content,
+    ContentResult,
+    Description,
+    DescriptionResult,
+    Feedback,
     Header,
     HeaderResult,
     Label,
     Title,
     TitleResult,
     Value,
-    ViewPrices, ViewQuantityStocks, ViewValue,
+    ViewPrices,
+    ViewQuantityStocks,
+    ViewValue,
     Wrapper
 } from "./styles.ts";
 import {InputCurrency} from "../../../../components/inputCurrency";
 import {InputDate} from "../../../../components/inputDate";
 import {Button} from "../../../../components/button";
-import {GetStockGainsResponse} from "../../../../../domain/models/get-stock-gains-response.ts";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 import {useFormik} from 'formik';
 import * as yup from 'yup';
+import {useStock} from "../../../../hooks/useStocks.tsx";
 
-interface IProps {
-    getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
-    gainsOfStock: GetStockGainsResponse
-}
 
-export const CardSimulateStock = ({getGainsOfStock, gainsOfStock}: IProps) => {
+export const CardSimulateStock = () => {
+
+    const {
+        getGainsOfStock,
+        gainsOfStock,
+    } = useStock();
 
     const handleSubmit = (values: {
         currency: string,
@@ -81,33 +87,37 @@ export const CardSimulateStock = ({getGainsOfStock, gainsOfStock}: IProps) => {
 
                     <Button onClick={() => formik.handleSubmit()}/>
                 </form>
-                <ContentResult>
-                    <HeaderResult>
-                        <TitleResult>AVA</TitleResult>
-                        <DescriptionResult>{gainsOfStock.purchasedAt}</DescriptionResult>
-                    </HeaderResult>
+                {
+                    gainsOfStock && (
+                        <ContentResult>
+                            <HeaderResult>
+                                <TitleResult>AVA</TitleResult>
+                                <DescriptionResult>{gainsOfStock.purchasedAt}</DescriptionResult>
+                            </HeaderResult>
 
-                    <ViewPrices>
-                        <ViewValue>
-                            <Label>Último preço</Label>
-                            <Value>{formatCurrency(gainsOfStock.lastPrice)}</Value>
-                        </ViewValue>
-                        <ViewValue>
-                            <Label>Preço na data</Label>
-                            <Value>{formatCurrency(gainsOfStock.priceAtDate)}</Value>
-                        </ViewValue>
-                    </ViewPrices>
-                    <ViewQuantityStocks>
-                        <ViewValue>
-                            <Label>Quantidade de ações</Label>
-                            <Value>{gainsOfStock.purchasedAmount} unidades</Value>
-                        </ViewValue>
-                    </ViewQuantityStocks>
-                    <ViewValue>
-                        <Label>Total ganho</Label>
-                        <Value>{formatCurrency(gainsOfStock.capitalGains)}</Value>
-                    </ViewValue>
-                </ContentResult>
+                            <ViewPrices>
+                                <ViewValue>
+                                    <Label>Último preço</Label>
+                                    <Value>{formatCurrency(gainsOfStock.lastPrice)}</Value>
+                                </ViewValue>
+                                <ViewValue>
+                                    <Label>Preço na data</Label>
+                                    <Value>{formatCurrency(gainsOfStock.priceAtDate)}</Value>
+                                </ViewValue>
+                            </ViewPrices>
+                            <ViewQuantityStocks>
+                                <ViewValue>
+                                    <Label>Quantidade de ações</Label>
+                                    <Value>{gainsOfStock.purchasedAmount} unidades</Value>
+                                </ViewValue>
+                            </ViewQuantityStocks>
+                            <ViewValue>
+                                <Label>Total ganho</Label>
+                                <Value>{formatCurrency(gainsOfStock.capitalGains)}</Value>
+                            </ViewValue>
+                        </ContentResult>
+                    )
+                }
             </Content>
         </Wrapper>
     )

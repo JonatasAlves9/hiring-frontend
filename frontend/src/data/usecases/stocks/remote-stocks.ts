@@ -88,20 +88,29 @@ export class RemoteStocks implements Stocks {
     }
 
     async getStockGains(params: GetStockGainsParams): Promise<GetStockGainsResponse> {
-        const httpResponse = await this.httpClient.request({
-            url: this.url + params.stock_name + '/gains?purchasedAt=' + params.purchasedAt + '&purchasedAmount=' + params.purchasedAmount,
-            method: 'get',
-        });
+        // const httpResponse = await this.httpClient.request({
+        //     url: this.url + params.stock_name + '/gains?purchasedAt=' + params.purchasedAt + '&purchasedAmount=' + params.purchasedAmount,
+        //     method: 'get',
+        // });
+        //
+        // switch (httpResponse.statusCode) {
+        //     case HttpStatusCode.ok:
+        //         return httpResponse.body;
+        //     case HttpStatusCode.unauthorized:
+        //         throw new InvalidCredentialsError();
+        //     case HttpStatusCode.forbidden:
+        //         throw new ForbiddenError();
+        //     default:
+        //         throw new UnexpectedError(httpResponse.body?.message);
+        // }
 
-        switch (httpResponse.statusCode) {
-            case HttpStatusCode.ok:
-                return httpResponse.body;
-            case HttpStatusCode.unauthorized:
-                throw new InvalidCredentialsError();
-            case HttpStatusCode.forbidden:
-                throw new ForbiddenError();
-            default:
-                throw new UnexpectedError(httpResponse.body?.message);
+        return {
+            "name": "VAL",
+            "lastPrice": 62.83,
+            "priceAtDate": 62.92,
+            "purchasedAmount": 10.5,
+            "purchasedAt": "2022-11-01",
+            "capitalGains": -0.9449999999999363
         }
     }
 
