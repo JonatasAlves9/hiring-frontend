@@ -1,12 +1,5 @@
 import {HttpClient, HttpRequest, HttpResponse, HttpStatusCode} from "../../../src/data/protocols/http/http-client";
 
-export const mockHttpRequest = (): HttpRequest => ({
-    url: 'any_url',
-    method: 'get',
-    body: {},
-    headers: {}
-})
-
 export class HttpClientSpy<R = any> implements HttpClient<R> {
     url?: string
     method?: string
