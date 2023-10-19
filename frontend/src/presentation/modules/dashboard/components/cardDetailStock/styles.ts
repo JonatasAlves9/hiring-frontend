@@ -107,6 +107,22 @@ export const ViewInformationAndDate = styled.div`
   justify-content: space-between;
   align-items: center;
   display: flex;
+
+  // Quando a tela é menor que 768px
+  @media (max-width: 1500px) {
+    flex-direction: column; // Os itens do flexbox vão de cima para baixo
+
+    > * { // Todos os elementos filhos diretos
+      flex: none; // Redefinindo o flex para não usar os valores de flex definidos anteriormente
+      width: 100%; // Tomando toda a largura disponível
+      margin-bottom: 10px; // Adicionando uma margem para separar os elementos
+    }
+
+    > *:last-child {
+      margin-bottom: 0; // Removendo a margem do último elemento para evitar espaçamento extra
+      justify-content: center;
+    }
+  }
 `;
 
 
