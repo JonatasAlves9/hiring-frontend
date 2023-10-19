@@ -107,7 +107,7 @@ export const CardDetailStock = () => {
                                 <div style={{
                                     flex: 1
                                 }}>
-                                    <ChartLineHistory stockHistory={stockHistory} loading={loadingStockHistory}/>
+                                    <ChartLineHistory stockHistory={stockHistory} loading={loadingStockHistory} />
                                 </div>
 
                             </div>
