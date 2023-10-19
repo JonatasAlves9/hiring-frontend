@@ -65,10 +65,20 @@ describe('RemoteStocks handleHttpResponse', () => {
     test('Should throw UnexpectedError for any other status code', async () => {
         httpClientSpy.response = {
             statusCode: HttpStatusCode.badRequest,
-            body: { message: 'any_error' }
+            body: {message: 'any_error'}
         };
 
         expect(() => sut['handleHttpResponse'](httpClientSpy.response)).toThrow(UnexpectedError);
+    });
+
+    test('Should use default message if no message is provided', () => {
+        const error = new UnexpectedError();
+        expect(error.message).toBe('Algo de errado aconteceu. Tente novamente');
+    });
+
+    test('Should use provided message if message is provided', () => {
+        const error = new UnexpectedError('custom_message');
+        expect(error.message).toBe('custom_message');
     });
 });
 
@@ -130,8 +140,9 @@ describe('RemoteStocks', () => {
             stocksToCompare: ['any_stock1', 'any_stock2']
         };
 
+
         const {stock_name, stocksToCompare} = compareStockParams;
-        const expectedUrl = `/stocks/${stock_name}/compare?stocksToCompare[]=${stocksToCompare[0]}&stocksToCompare[]=${stocksToCompare[1]}`;
+        const expectedUrl = `/stocks/${stock_name}/compare?stocksToCompare[]=${stocksToCompare![0]}&stocksToCompare[]=${stocksToCompare![1]}`;
 
         await sut.compareStocks(compareStockParams);
 
