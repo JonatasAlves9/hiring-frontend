@@ -1,4 +1,4 @@
-export interface GetStockGainsResponse {
+export interface CompareStockResponse {
     "lastPrices": LastPrices[]
 }
 

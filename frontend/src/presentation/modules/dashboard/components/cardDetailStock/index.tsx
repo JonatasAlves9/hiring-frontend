@@ -20,6 +20,7 @@ import {ButtonsDate} from "../buttonsDate";
 import {faCodeCompare} from '@fortawesome/free-solid-svg-icons';
 import {useState} from "react";
 import {useStock} from "../../../../hooks/useStocks.tsx";
+import {TableStockCompare} from "../tableStocksCompare";
 
 export const CardDetailStock = () => {
 
@@ -31,6 +32,8 @@ export const CardDetailStock = () => {
         stocksToCompare,
         stockHistory,
         compareStock,
+        stocksCompared,
+        resetCompare,
     } = useStock();
 
     return (
@@ -45,19 +48,25 @@ export const CardDetailStock = () => {
                                 {
                                     (stocksToCompare || []).map((item) => {
                                         return (
-                                            <>
+                                            <div key={Math.random()} style={{
+                                                display: "flex",
+                                                alignItems: 'center',
+                                                gap: 10
+                                            }}>
                                                 <Title>{item}</Title>
                                                 <Icon icon={faCodeCompare}/>
-                                            </>
+                                            </div>
                                         )
                                     })
                                 }
-                                <InputCompare onChange={(e) => setInputCompare(e.target.value)} value={inputCompare}
-                                              autoFocus={true}/>
-                                <ButtonCompareAction onClick={() => {
-                                    compareStock(inputCompare)
-                                    setInputCompare('')
-                                }}>
+                                <InputCompare
+                                    onChange={(e) => setInputCompare(e.target.value)} value={inputCompare}
+                                    autoFocus={true}/>
+                                <ButtonCompareAction
+                                    onClick={() => {
+                                        compareStock(inputCompare)
+                                        setInputCompare('')
+                                    }}>
                                     <ButtonLabel>Comparar</ButtonLabel>
                                 </ButtonCompareAction>
                             </>
@@ -65,7 +74,10 @@ export const CardDetailStock = () => {
                     }
 
                 </ViewCompareStocks>
-                <Button onClick={() => setIsCompare(oldValue => !oldValue)}>
+                <Button onClick={() => {
+                    resetCompare()
+                    setIsCompare(oldValue => !oldValue)
+                }}>
                     <Icon icon={faCodeCompare}/>
                     <ButtonLabel>Comparar</ButtonLabel>
                 </Button>
@@ -76,10 +88,32 @@ export const CardDetailStock = () => {
                         <ValueStock>{formatCurrency(stockDetail?.lastPrice || 0)}</ValueStock>
                         <DescriptionValueStock>Valor Atual</DescriptionValueStock>
                     </div>
-                    <ButtonsDate />
+                    <ButtonsDate/>
                 </ViewInformationAndDate>
                 <ContentChart>
-                    <ChartLineHistory stockHistory={stockHistory}/>
+                    {
+                        (stocksToCompare || []).length > 0 ? (
+                            <div style={{
+                                display: 'flex',
+                                flex: 1,
+                                gap: 10
+                            }}>
+                                <div style={{
+                                    flex: .3
+                                }}>
+                                    <TableStockCompare data={stocksCompared}/>
+                                </div>
+                                <div style={{
+                                    flex: 1
+                                }}>
+                                    <ChartLineHistory stockHistory={stockHistory}/>
+                                </div>
+
+                            </div>
+                        ) : (
+                            <ChartLineHistory stockHistory={stockHistory}/>)
+                    }
+
                 </ContentChart>
             </Content>
         </Wrapper>

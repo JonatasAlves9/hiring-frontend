@@ -11,6 +11,7 @@ import {ForbiddenError, InvalidCredentialsError, UnexpectedError} from "../../..
 import {GetStockHistoryResponse} from "../../../domain/models/get-stock-history-response.ts";
 import {GetStockGainsResponse} from "../../../domain/models/get-stock-gains-response.ts";
 import {pricesFake, pricesFake15Days, pricesFakeWeek} from "../../../presentation/modules/dashboard/fakedata/prices.ts";
+import {CompareStockResponse} from "../../../domain/models/compare-stock-response.ts";
 
 export class RemoteStocks implements Stocks {
     /**
@@ -114,34 +115,53 @@ export class RemoteStocks implements Stocks {
         }
     }
 
-    async compareStocks(params: CompareStocksParams): Promise<GetStockGainsResponse> {
-        const makeParamsUrl = () => {
-            const url = '';
-            params.stocksToCompare.map((item, index) => {
-                if (index === 0) {
-                    url.concat('stocksToCompare[]=' + item)
-                    return
+    async compareStocks(params: CompareStocksParams): Promise<CompareStockResponse> {
+        // const makeParamsUrl = () => {
+        //     const url = '';
+        //     params.stocksToCompare.map((item, index) => {
+        //         if (index === 0) {
+        //             url.concat('stocksToCompare[]=' + item)
+        //             return
+        //         }
+        //         url.concat('&stocksToCompare[]=' + item)
+        //     })
+        //     return url
+        // }
+        //
+        // const httpResponse = await this.httpClient.request({
+        //     url: this.url + params.stock_name + '/compare?' + makeParamsUrl(),
+        //     method: 'get',
+        // });
+        //
+        // switch (httpResponse.statusCode) {
+        //     case HttpStatusCode.ok:
+        //         return httpResponse.body;
+        //     case HttpStatusCode.unauthorized:
+        //         throw new InvalidCredentialsError();
+        //     case HttpStatusCode.forbidden:
+        //         throw new ForbiddenError();
+        //     default:
+        //         throw new UnexpectedError(httpResponse.body?.message);
+        // }
+
+        return {
+            "lastPrices": [
+                {
+                    "name": "VAL",
+                    "lastPrice": 62.83,
+                    "pricedAt": "2022-11-03"
+                },
+                {
+                    "name": "VALE",
+                    "lastPrice": 13.11,
+                    "pricedAt": "2022-11-03"
+                },
+                {
+                    "name": "V",
+                    "lastPrice": 194.75,
+                    "pricedAt": "2022-11-03"
                 }
-                url.concat('&stocksToCompare[]=' + item)
-            })
-            return url
-        }
-
-        const httpResponse = await this.httpClient.request({
-            url: this.url + params.stock_name + '/compare?' + makeParamsUrl(),
-            method: 'get',
-        });
-
-        switch (httpResponse.statusCode) {
-            case HttpStatusCode.ok:
-                return httpResponse.body;
-            case HttpStatusCode.unauthorized:
-                throw new InvalidCredentialsError();
-            case HttpStatusCode.forbidden:
-                throw new ForbiddenError();
-            default:
-                throw new UnexpectedError(httpResponse.body?.message);
+            ]
         }
     }
-
 }

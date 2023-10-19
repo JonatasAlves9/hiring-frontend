@@ -3,6 +3,7 @@ import {Stocks} from "../../domain/usecases/stocks/stocks.ts";
 import {GetStockByNameResponse} from "../../domain/models";
 import {GetStockHistoryResponse} from "../../domain/models/get-stock-history-response.ts";
 import {GetStockGainsResponse} from "../../domain/models/get-stock-gains-response.ts";
+import {CompareStockResponse} from "../../domain/models/compare-stock-response.ts";
 
 interface IProps {
     children: JSX.Element;
@@ -18,6 +19,8 @@ interface StockContextType {
     getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
     compareStock: (new_stock_to_compare: string) => void;
     gainsOfStock: GetStockGainsResponse | undefined;
+    stocksCompared: CompareStockResponse | undefined;
+    resetCompare: () => void,
 }
 
 export const StockContext = createContext<StockContextType>({
@@ -28,7 +31,9 @@ export const StockContext = createContext<StockContextType>({
     getHistoryOfStock: () => null,
     getGainsOfStock: () => null,
     compareStock: () => null,
-    gainsOfStock: undefined
+    resetCompare: () => null,
+    gainsOfStock: undefined,
+    stocksCompared: undefined
 });
 
 export const useStock = () => {
@@ -39,6 +44,7 @@ const StockProvider = ({children, stock}: IProps) => {
     const [stockDetail, setStockDetail] = useState<GetStockByNameResponse | undefined>();
     const [stockHistory, setStockHistory] = useState<GetStockHistoryResponse | undefined>();
     const [gainsOfStock, setGainsOfStock] = useState<GetStockGainsResponse | undefined>();
+    const [stocksCompared, setStockedCompared] = useState<CompareStockResponse | undefined>();
 
     const [stocksToCompare, setStockToCompare] = useState<string[]>([])
 
@@ -85,6 +91,11 @@ const StockProvider = ({children, stock}: IProps) => {
         })
     }, [stockDetail])
 
+    const resetCompare = () => {
+        setStockToCompare([])
+        setStockedCompared(undefined)
+    }
+
     const compareStock = useCallback((new_stock_to_compare: string) => {
         setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
 
@@ -96,12 +107,11 @@ const StockProvider = ({children, stock}: IProps) => {
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
         }).then((res) => {
-            console.log(res)
-            setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
+            setStockedCompared(res)
         }).catch((err) => {
             console.log(err)
         })
-    }, [])
+    }, [stockDetail])
 
 
     return (
@@ -110,11 +120,13 @@ const StockProvider = ({children, stock}: IProps) => {
                 stockDetail,
                 stockHistory,
                 stocksToCompare,
+                stocksCompared,
                 gainsOfStock,
                 getDetailAboutStock,
                 getGainsOfStock,
                 compareStock,
-                getHistoryOfStock
+                getHistoryOfStock,
+                resetCompare,
             }}>
             {children}
         </StockContext.Provider>
