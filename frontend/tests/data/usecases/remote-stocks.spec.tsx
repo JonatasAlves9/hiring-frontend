@@ -71,12 +71,12 @@ describe('RemoteStocks handleHttpResponse', () => {
         expect(() => sut['handleHttpResponse'](httpClientSpy.response)).toThrow(UnexpectedError);
     });
 
-    test('Should use default message if no message is provided', () => {
+    test('Should throw UnexpectedError use default message if no message is provided', () => {
         const error = new UnexpectedError();
         expect(error.message).toBe('Algo de errado aconteceu. Tente novamente');
     });
 
-    test('Should use provided message if message is provided', () => {
+    test('Should throw UnexpectedError use provided message if message is provided', () => {
         const error = new UnexpectedError('custom_message');
         expect(error.message).toBe('custom_message');
     });
