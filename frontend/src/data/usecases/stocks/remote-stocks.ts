@@ -27,27 +27,22 @@ export class RemoteStocks implements Stocks {
     }
 
     async getStockByName(params: GetStockByNameParams): Promise<GetStockByNameResponse> {
-        // const httpResponse = await this.httpClient.request({
-        //     url: this.url + params.stock_name + '/quote',
-        //     method: 'get',
-        // });
-        //
-        // switch (httpResponse.statusCode) {
-        //     case HttpStatusCode.ok:
-        //         return httpResponse.body;
-        //     case HttpStatusCode.unauthorized:
-        //         throw new InvalidCredentialsError();
-        //     case HttpStatusCode.forbidden:
-        //         throw new ForbiddenError();
-        //     default:
-        //         throw new UnexpectedError(httpResponse.body?.message);
-        // }
+        const httpResponse = await this.httpClient.request({
+            url: this.url  + params.stock_name + '/quote',
+            method: 'get',
+        });
 
-        return {
-            name: 'VAL',
-            lastPrice: 70,
-            pricedAt: '2022-11-03'
+        switch (httpResponse.statusCode) {
+            case HttpStatusCode.ok:
+                return httpResponse.body;
+            case HttpStatusCode.unauthorized:
+                throw new InvalidCredentialsError();
+            case HttpStatusCode.forbidden:
+                throw new ForbiddenError();
+            default:
+                throw new UnexpectedError(httpResponse.body?.message);
         }
+
     }
 
     async getStockHistory(params: GetStockHistoryParams): Promise<GetStockHistoryResponse> {

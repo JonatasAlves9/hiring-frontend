@@ -4,6 +4,7 @@ import {GetStockByNameResponse} from "../../domain/models";
 import {GetStockHistoryResponse} from "../../domain/models/get-stock-history-response.ts";
 import {GetStockGainsResponse} from "../../domain/models/get-stock-gains-response.ts";
 import {CompareStockResponse} from "../../domain/models/compare-stock-response.ts";
+import {toastError} from "../components/toast";
 
 interface IProps {
     children: JSX.Element;
@@ -54,7 +55,7 @@ const StockProvider = ({children, stock}: IProps) => {
         }).then((res) => {
             setStockDetail(res)
         }).catch((err) => {
-            console.log(err)
+            toastError(err.message)
         })
     }, [])
 
@@ -70,7 +71,7 @@ const StockProvider = ({children, stock}: IProps) => {
         }).then((res) => {
             setStockHistory(res)
         }).catch((err) => {
-            console.log(err)
+            toastError(err.message)
         })
     }, [stockDetail])
 
@@ -87,7 +88,7 @@ const StockProvider = ({children, stock}: IProps) => {
         }).then((res) => {
             setGainsOfStock(res)
         }).catch((err) => {
-            console.log(err)
+            toastError(err.message)
         })
     }, [stockDetail])
 
@@ -109,7 +110,7 @@ const StockProvider = ({children, stock}: IProps) => {
         }).then((res) => {
             setStockedCompared(res)
         }).catch((err) => {
-            console.log(err)
+            toastError(err.message)
         })
     }, [stockDetail])
 

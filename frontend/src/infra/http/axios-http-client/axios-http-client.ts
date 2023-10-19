@@ -5,7 +5,7 @@ import {
     HttpResponse,
 } from '../../../data/protocols/http/http-client';
 
-axios.defaults.baseURL = 'https://radeestagio.com.br/api';
+axios.defaults.baseURL = 'http://localhost:3001';
 
 axios.defaults.withCredentials = true;
 
