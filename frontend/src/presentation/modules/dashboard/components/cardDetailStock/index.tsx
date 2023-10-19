@@ -1,8 +1,9 @@
 import {
+    Button, ButtonLabel,
     Content,
     ContentChart,
     DescriptionValueStock,
-    Header,
+    Header, Icon,
     Title,
     ValueStock,
     ViewInformationAndDate,
@@ -13,6 +14,7 @@ import {GetStockByNameResponse} from "../../../../../domain/models";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 import {ButtonsDate} from "../buttonsDate";
 import {GetStockHistoryResponse} from "../../../../../domain/models/get-stock-history-response.ts";
+import {faCodeCompare} from '@fortawesome/free-solid-svg-icons';
 
 interface IProps {
     stockDetail: GetStockByNameResponse
@@ -25,6 +27,10 @@ export const CardDetailStock = ({stockDetail, stockHistory, getHistoryOfStock}: 
         <Wrapper>
             <Header>
                 <Title>{stockDetail.name}</Title>
+                <Button>
+                    <Icon icon={faCodeCompare}/>
+                    <ButtonLabel>Comparar</ButtonLabel>
+                </Button>
             </Header>
             <Content>
                 <ViewInformationAndDate>

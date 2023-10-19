@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 export const Wrapper = styled.div`
   background-color: ${({theme}) => theme.colors.dark};
@@ -11,6 +12,34 @@ export const Header = styled.div`
   padding: 30px 0;
   margin: 0 40px;
   border-bottom: 1px solid ${({theme}) => theme.colors.border_dark};
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+
+export const Icon = styled(FontAwesomeIcon)`
+  color: ${({theme}) => theme.colors.white};
+  font-size: ${({theme}) => theme.sizes.xs}px;
+`;
+
+export const Button = styled.div`
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease; 
+  padding: 10px;
+  border-radius: 10px;
+  &:hover {
+    background-color: ${({theme}) => theme.colors.background};;
+  }
+`;
+
+export const ButtonLabel = styled.p`
+  font-size: ${({theme}) => theme.sizes.xs}px;
+  color: ${({theme}) => theme.colors.white};
 `;
 
 export const ViewInformationAndDate = styled.div`
