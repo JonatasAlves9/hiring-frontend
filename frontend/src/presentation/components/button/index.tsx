@@ -15,7 +15,6 @@ export const Button = ({loading = false, ...rest}: IProps) => {
                     <Spinner color={themeDark.colors.white} size={13}/> :
                     <Label>Projetar</Label>
             }
-
         </Wrapper>
     )
 }

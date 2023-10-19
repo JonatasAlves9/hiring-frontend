@@ -83,22 +83,18 @@ export class RemoteStocks implements Stocks {
 
     async compareStocks(params: CompareStocksParams): Promise<CompareStockResponse> {
         const makeParamsUrl = () => {
-            const url = '';
-            params.stocksToCompare.map((item, index) => {
-                if (index === 0) {
-                    url.concat('stocksToCompare[]=' + item)
-                    return
-                }
-                url.concat('&stocksToCompare[]=' + item)
-            })
-            return url
+            if (!params.stocksToCompare || !Array.isArray(params.stocksToCompare)) {
+                return '';
+            }
+
+            const paramParts = params.stocksToCompare.map(item => 'stocksToCompare[]=' + encodeURIComponent(item));
+            return paramParts.join('&');
         }
 
         const httpResponse = await this.httpClient.request({
-            url: this.url + params.stock_name + '/compare?' + makeParamsUrl(),
+            url: this.url + encodeURIComponent(params.stock_name) + '/compare?' + makeParamsUrl(),
             method: 'get',
         });
-
         switch (httpResponse.statusCode) {
             case HttpStatusCode.ok:
                 return httpResponse.body;

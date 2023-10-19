@@ -122,11 +122,13 @@ const StockProvider = ({children, stock}: IProps) => {
     }
 
     const compareStock = useCallback((new_stock_to_compare: string) => {
-        setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
 
-        if (stockDetail === undefined) {
+        if (stockDetail === undefined || new_stock_to_compare === '') {
             return
         }
+
+        setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
+
         stock.compareStocks({
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
