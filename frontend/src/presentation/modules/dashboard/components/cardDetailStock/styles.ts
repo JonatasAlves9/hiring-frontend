@@ -1,5 +1,27 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+`;
+
+interface ButtonProps {
+    show: boolean;
+}
 
 export const Wrapper = styled.div`
   background-color: ${({theme}) => theme.colors.dark};
@@ -24,10 +46,17 @@ export const ViewCompareStocks = styled.div`
   gap: 10px;
 `;
 
+export const ViewAnimationPresence = styled.div<ButtonProps>`
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  animation: ${({show}) => show ? fadeIn : fadeOut} 0.5s forwards;
+  gap: 10px;
+`;
 export const InputCompare = styled.input`
-  background-color: #D9D9D9;
-  padding: 10px;
-  border-radius: 10px;
+  background-color: ${({theme}) => theme.colors.white};;
+  padding: 5px;
+  border-radius: 8px;
   border: none;
   width: 60px;
 `;
@@ -60,9 +89,10 @@ export const Button = styled.div`
   display: flex;
   gap: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
   padding: 10px;
   border-radius: 10px;
+
   &:hover {
     background-color: ${({theme}) => theme.colors.background};;
   }

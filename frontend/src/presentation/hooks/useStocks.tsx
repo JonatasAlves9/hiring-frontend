@@ -26,6 +26,7 @@ interface StockContextType {
     loadingStockDetail: StatusRequest
     loadingStockHistory: StatusRequest
     loadingStockGains: StatusRequest
+    loadingCompareStock: StatusRequest
 }
 
 export const StockContext = createContext<StockContextType>({
@@ -42,6 +43,8 @@ export const StockContext = createContext<StockContextType>({
     loadingStockDetail: STATUS_REQUEST.NONE,
     loadingStockHistory: STATUS_REQUEST.NONE,
     loadingStockGains: STATUS_REQUEST.NONE,
+    loadingCompareStock:  STATUS_REQUEST.NONE,
+
 });
 
 export const useStock = () => {
@@ -59,6 +62,8 @@ const StockProvider = ({children, stock}: IProps) => {
     const [loadingStockDetail, setLoadingStockDetail] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingStockHistory, setLoadingStockHistory] = useState<StatusRequest>(STATUS_REQUEST.NONE);
     const [loadingStockGains, setLoadingStockGains] = useState<StatusRequest>(STATUS_REQUEST.NONE);
+    const [loadingCompareStock, setLoadingCompareStock] = useState<StatusRequest>(STATUS_REQUEST.NONE);
+
 
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
@@ -127,16 +132,18 @@ const StockProvider = ({children, stock}: IProps) => {
             return
         }
 
-        setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
+        setLoadingCompareStock(STATUS_REQUEST.LOADING)
 
         stock.compareStocks({
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
         }).then((res) => {
             setStockedCompared(res)
+            setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
+            setLoadingCompareStock(STATUS_REQUEST.DONE)
         }).catch((err) => {
             toastError(err.message)
-
+            setLoadingCompareStock(STATUS_REQUEST.ERROR)
         })
     }, [stockDetail])
 
@@ -157,6 +164,7 @@ const StockProvider = ({children, stock}: IProps) => {
                 loadingStockDetail,
                 loadingStockHistory,
                 loadingStockGains,
+                loadingCompareStock,
             }}>
             {children}
         </StockContext.Provider>
