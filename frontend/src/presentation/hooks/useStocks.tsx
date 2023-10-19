@@ -5,6 +5,7 @@ import {GetStockHistoryResponse} from "../../domain/models/get-stock-history-res
 import {GetStockGainsResponse} from "../../domain/models/get-stock-gains-response.ts";
 import {CompareStockResponse} from "../../domain/models/compare-stock-response.ts";
 import {toastError} from "../components/toast";
+import {STATUS_REQUEST, StatusRequest} from "../../domain/models/status-request.ts";
 
 interface IProps {
     children: JSX.Element;
@@ -22,6 +23,7 @@ interface StockContextType {
     gainsOfStock: GetStockGainsResponse | undefined;
     stocksCompared: CompareStockResponse | undefined;
     resetCompare: () => void,
+    loadingStockDetail: StatusRequest
 }
 
 export const StockContext = createContext<StockContextType>({
@@ -34,7 +36,8 @@ export const StockContext = createContext<StockContextType>({
     compareStock: () => null,
     resetCompare: () => null,
     gainsOfStock: undefined,
-    stocksCompared: undefined
+    stocksCompared: undefined,
+    loadingStockDetail: STATUS_REQUEST.NONE,
 });
 
 export const useStock = () => {
@@ -47,15 +50,21 @@ const StockProvider = ({children, stock}: IProps) => {
     const [gainsOfStock, setGainsOfStock] = useState<GetStockGainsResponse | undefined>();
     const [stocksCompared, setStockedCompared] = useState<CompareStockResponse | undefined>();
 
-    const [stocksToCompare, setStockToCompare] = useState<string[]>([])
+    const [stocksToCompare, setStockToCompare] = useState<string[]>([]);
+
+    const [loadingStockDetail, setLoadingStockDetail] = useState<StatusRequest>(STATUS_REQUEST.NONE);
+
 
     const getDetailAboutStock = useCallback((stock_name: string) => {
+        setLoadingStockDetail(STATUS_REQUEST.LOADING)
         stock.getStockByName({
             stock_name
         }).then((res) => {
             setStockDetail(res)
+            setLoadingStockDetail(STATUS_REQUEST.DONE)
         }).catch((err) => {
             toastError(err.message)
+            setLoadingStockDetail(STATUS_REQUEST.ERROR)
         })
     }, [])
 
@@ -128,6 +137,7 @@ const StockProvider = ({children, stock}: IProps) => {
                 compareStock,
                 getHistoryOfStock,
                 resetCompare,
+                loadingStockDetail,
             }}>
             {children}
         </StockContext.Provider>

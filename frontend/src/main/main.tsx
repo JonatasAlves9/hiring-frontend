@@ -6,6 +6,7 @@ import {ThemeProvider} from "styled-components";
 import {themeDark} from "../presentation/style/themes.ts";
 import 'react-toastify/dist/ReactToastify.css'
 import 'rsuite/dist/rsuite.min.css';
+import "react-activity/dist/library.css";
 import './style.css'
 import {ToastContainer} from 'react-toastify'
 import {makeStock} from "./factories/usecases/stocks/remote-stocks-factory.ts";
