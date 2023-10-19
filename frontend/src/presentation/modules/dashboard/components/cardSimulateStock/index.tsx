@@ -118,8 +118,8 @@ export const CardSimulateStock = () => {
                                 </ViewValue>
                             </ViewQuantityStocks>
                             <ViewValue>
-                                <Label>Total ganho</Label>
-                                <Value>{formatCurrency(gainsOfStock.capitalGains)}</Value>
+                                <Label>Saldo final</Label>
+                                <Value>{formatCurrency(gainsOfStock.capitalGains)} </Value>
                             </ViewValue>
                         </ContentResult>
                     )
