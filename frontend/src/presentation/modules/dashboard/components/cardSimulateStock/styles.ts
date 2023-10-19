@@ -20,6 +20,7 @@ export const Description = styled.p`
 
 export const Content = styled.div`
   padding: 30px;
+  margin-top: 30px;
 `;
 
 export const Header = styled.div`
@@ -63,7 +64,6 @@ export const ViewQuantityStocks = styled.div`
   border-radius: 10px;
   margin-top: 10px;
   margin-bottom: 20px;
-
 `;
 
 export const Label = styled.p`
