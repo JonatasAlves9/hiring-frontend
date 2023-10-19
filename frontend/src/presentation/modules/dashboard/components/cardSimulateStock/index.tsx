@@ -1,6 +1,6 @@
 import {
     Content, ContentResult,
-    Description, DescriptionResult,
+    Description, DescriptionResult, Feedback,
     Header,
     HeaderResult,
     Label,
@@ -15,6 +15,8 @@ import {InputDate} from "../../../../components/inputDate";
 import {Button} from "../../../../components/button";
 import {GetStockGainsResponse} from "../../../../../domain/models/get-stock-gains-response.ts";
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
+import {useFormik} from 'formik';
+import * as yup from 'yup';
 
 interface IProps {
     getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
@@ -23,9 +25,29 @@ interface IProps {
 
 export const CardSimulateStock = ({getGainsOfStock, gainsOfStock}: IProps) => {
 
-    const handleSubmit = () => {
-        getGainsOfStock('', '')
+    const handleSubmit = (values: {
+        currency: string,
+        date: string
+    }) => {
+        getGainsOfStock(values.date, values.currency)
     }
+
+    const validationSchema = yup.object({
+        currency: yup.number().required('O campo moeda é obrigatório'),
+        date: yup.date().required('O campo data é obrigatório'),
+    });
+
+
+    const formik = useFormik({
+        initialValues: {
+            currency: '',
+            date: '',
+        },
+        validationSchema: validationSchema,
+        onSubmit: (values) => {
+            handleSubmit(values);
+        },
+    });
 
     return (
         <Wrapper>
@@ -35,10 +57,30 @@ export const CardSimulateStock = ({getGainsOfStock, gainsOfStock}: IProps) => {
                     ganhos. </Description>
             </Header>
             <Content>
-                <InputCurrency/>
-                <InputDate/>
-                <Button onClick={() => handleSubmit()}/>
+                <form onSubmit={formik.handleSubmit}>
+                    <InputCurrency
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        name="currency"
+                    />
 
+                    {formik.touched.currency && formik.errors.currency ? (
+                        <Feedback>{formik.errors.currency}</Feedback>
+                    ) : null}
+
+                    <InputDate
+                        value={formik.values.date}
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        name="date"
+                    />
+
+                    {formik.touched.date && formik.errors.date ? (
+                        <Feedback>{formik.errors.date}</Feedback>
+                    ) : null}
+
+                    <Button onClick={() => formik.handleSubmit()}/>
+                </form>
                 <ContentResult>
                     <HeaderResult>
                         <TitleResult>AVA</TitleResult>

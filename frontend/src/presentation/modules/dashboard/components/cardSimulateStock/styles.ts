@@ -22,7 +22,6 @@ export const Content = styled.div`
   padding: 30px;
 `;
 
-
 export const Header = styled.div`
   height: 20px;
   padding: 30px 0;
@@ -81,3 +80,9 @@ export const Value = styled.p`
 `;
 
 export const ViewValue = styled.div``;
+
+export const Feedback = styled.p`
+  font-size: ${({theme}) => theme.sizes.xs}px;
+  color: red;
+  margin-top: 5px;
+`;
