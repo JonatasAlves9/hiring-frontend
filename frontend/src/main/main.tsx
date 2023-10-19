@@ -8,14 +8,18 @@ import 'react-toastify/dist/ReactToastify.css'
 import 'rsuite/dist/rsuite.min.css';
 import './style.css'
 import {ToastContainer} from 'react-toastify'
+import {makeStock} from "./factories/usecases/stocks/remote-stocks-factory.ts";
+import StockProvider from "../presentation/hooks/useStocks.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
         <ThemeProvider theme={themeDark}>
-            <BrowserRouter>
-                <ToastContainer/>
-                <Router/>
-            </BrowserRouter>
+            <StockProvider stock={makeStock()}>
+                <BrowserRouter>
+                    <ToastContainer/>
+                    <Router/>
+                </BrowserRouter>
+            </StockProvider>
         </ThemeProvider>
     </React.StrictMode>,
 )

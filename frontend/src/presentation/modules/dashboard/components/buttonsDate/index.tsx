@@ -1,7 +1,8 @@
 import {DateLabel, Wrapper} from "./styles.ts";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {format, subMonths, subWeeks, subYears} from 'date-fns';
 import {DateRangePicker} from 'rsuite';
+import {useStock} from "../../../../hooks/useStocks.tsx";
 
 enum CalendarButton {
     WEEK = 1,
@@ -10,13 +11,13 @@ enum CalendarButton {
     CUSTOM = 0
 }
 
-interface IProps {
-    getHistoryOfStock: (from: string, to: string) => void
-}
 
-export const ButtonsDate = ({getHistoryOfStock}: IProps) => {
+export const ButtonsDate = () => {
     const [itemSelected, setItemSelected] = useState<CalendarButton>();
-
+    const {
+        getHistoryOfStock,
+        stockDetail
+    } = useStock();
 
     const labels = [{
         label: '1S',
@@ -66,6 +67,10 @@ export const ButtonsDate = ({getHistoryOfStock}: IProps) => {
         const {from, to} = getDateRange(value);
         getHistoryOfStock(from, to);
     };
+
+    useEffect(() => {
+        handleButtonClick(1)
+    }, [stockDetail])
 
     return (
         <Wrapper>
