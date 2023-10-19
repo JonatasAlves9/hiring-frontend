@@ -1,6 +1,6 @@
 import {DateLabel, Wrapper} from "./styles.ts";
 import {useEffect, useState} from "react";
-import {format, subMonths, subWeeks, subYears} from 'date-fns';
+import {subMonths, subWeeks, subYears} from 'date-fns';
 import {DateRangePicker} from 'rsuite';
 import {useStock} from "../../../../hooks/useStocks.tsx";
 
@@ -33,19 +33,19 @@ export const ButtonsDate = () => {
     function getDateRange(type: CalendarButton) {
         const today: Date = new Date();
 
-        let to: Date;
+        let from: Date;
 
         switch (type) {
             case CalendarButton.WEEK:
-                to = subWeeks(today, 1);
+                from = subWeeks(today, 1);
                 break;
 
             case CalendarButton.MONTH:
-                to = subMonths(today, 1);
+                from = subMonths(today, 1);
                 break;
 
             case CalendarButton.YEAR:
-                to = subYears(today, 1);
+                from = subYears(today, 1);
                 break;
 
             default:
@@ -53,8 +53,8 @@ export const ButtonsDate = () => {
         }
 
         return {
-            from: format(today, 'yyyy-MM-dd'),
-            to: format(to, 'yyyy-MM-dd')
+            from: from,
+            to: today
         };
     }
 

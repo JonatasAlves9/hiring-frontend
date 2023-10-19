@@ -17,7 +17,7 @@ interface StockContextType {
     stockHistory: GetStockHistoryResponse | undefined;
     stocksToCompare: string[] | undefined;
     getDetailAboutStock: (stock_name: string) => void;
-    getHistoryOfStock: (from: string, to: string) => void;
+    getHistoryOfStock: (from: Date, to: Date) => void;
     getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
     compareStock: (new_stock_to_compare: string) => void;
     gainsOfStock: GetStockGainsResponse | undefined;
@@ -68,7 +68,7 @@ const StockProvider = ({children, stock}: IProps) => {
         })
     }, [])
 
-    const getHistoryOfStock = useCallback((from: string, to: string) => {
+    const getHistoryOfStock = useCallback((from: Date, to: Date) => {
         if (stockDetail === undefined) {
             return
         }

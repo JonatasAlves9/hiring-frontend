@@ -9,8 +9,8 @@ export type GetStockByNameParams = {
 
 export type GetStockHistoryParams = {
     stock_name: string;
-    from: string;
-    to: string;
+    from: Date;
+    to: Date;
 };
 
 export type GetStockGainsParams = {

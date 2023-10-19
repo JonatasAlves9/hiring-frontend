@@ -7,8 +7,6 @@ import {
 
 axios.defaults.baseURL = 'http://localhost:3001';
 
-axios.defaults.withCredentials = true;
-
 export class AxiosHttpClient implements HttpClient {
     async request(data: HttpRequest): Promise<HttpResponse> {
         let axiosResponse: AxiosResponse;
