@@ -37,29 +37,37 @@ export const CardDetailStock: React.FC = () => {
     return (
         <Wrapper>
             <Header>
-                <ViewCompareStocks>
-                    <Title>{stockDetail?.name}</Title>
-                    {
-                        isCompare && <ViewAnimationPresence show={isCompare}>
-                            <Icon icon={faCodeCompare}/>
-                            {stocksToCompare.map(item => <StockItem item={item}/>)}
-                            <InputCompare onChange={e => setInputCompare(e.target.value)} value={inputCompare}
-                                          autoFocus/>
-                            <ButtonCompareAction onClick={() => {
-                                compareStock(inputCompare);
-                                setInputCompare('');
-                            }}>
-                                {loadingCompareStock === STATUS_REQUEST.LOADING ?
-                                    <Spinner color={themeDark.colors.white} size={13}/> :
-                                    <>
-                                        <Icon icon={faCodeCompare}/>
-                                        <ButtonLabel>Comparar</ButtonLabel>
-                                    </>
-                                }
-                            </ButtonCompareAction>
-                        </ViewAnimationPresence>
-                    }
-                </ViewCompareStocks>
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    compareStock(inputCompare);
+                    setInputCompare('');
+                }}>
+                    <ViewCompareStocks>
+                        <Title>{stockDetail?.name}</Title>
+                        {
+                            isCompare && <ViewAnimationPresence show={isCompare}>
+                                <Icon icon={faCodeCompare}/>
+                                {stocksToCompare.map(item => <StockItem item={item}/>)}
+
+                                <InputCompare onChange={e => setInputCompare(e.target.value)} value={inputCompare}
+                                              autoFocus/>
+                                <ButtonCompareAction onClick={() => {
+                                    compareStock(inputCompare);
+                                    setInputCompare('');
+                                }}>
+                                    {loadingCompareStock === STATUS_REQUEST.LOADING ?
+                                        <Spinner color={themeDark.colors.white} size={13}/> :
+                                        <>
+                                            <Icon icon={faCodeCompare}/>
+                                            <ButtonLabel>Comparar</ButtonLabel>
+                                        </>
+                                    }
+                                </ButtonCompareAction>
+                            </ViewAnimationPresence>
+                        }
+                    </ViewCompareStocks>
+                </form>
+
                 <Button onClick={() => {
                     resetCompare();
                     setIsCompare(prev => !prev);

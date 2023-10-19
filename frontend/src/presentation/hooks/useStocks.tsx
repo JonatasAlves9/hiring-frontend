@@ -122,17 +122,17 @@ const StockProvider = ({children, stock}: IProps) => {
         })
     }, [stockDetail])
 
-    const resetCompare = () => {
-        setStockToCompare([])
+    const resetCompare = useCallback(() => {
+        // setStockToCompare([])
         setStockedCompared(undefined)
-    }
+    }, [setStockToCompare, setStockedCompared])
 
-    const resetStock = useCallback(()=> {
+    const resetStock = useCallback(() => {
         setStockDetail(undefined)
         setGainsOfStock(undefined)
         setStockedCompared(undefined)
         setGainsOfStock(undefined)
-    },[setStockDetail,setGainsOfStock,setStockedCompared, setGainsOfStock ])
+    }, [setStockDetail, setGainsOfStock, setStockedCompared, setGainsOfStock])
 
     const compareStock = useCallback((new_stock_to_compare: string) => {
 
@@ -146,6 +146,12 @@ const StockProvider = ({children, stock}: IProps) => {
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
         }).then((res) => {
+            console.log(stocksToCompare, res.lastPrices)
+            if (stocksToCompare.length + 2 > res.lastPrices.length) {
+                toastError('Ação não encontrada!')
+                setLoadingCompareStock(STATUS_REQUEST.ERROR)
+                return
+            }
             setStockedCompared(res)
             setStockToCompare(oldValue => [...oldValue, new_stock_to_compare])
             setLoadingCompareStock(STATUS_REQUEST.DONE)
