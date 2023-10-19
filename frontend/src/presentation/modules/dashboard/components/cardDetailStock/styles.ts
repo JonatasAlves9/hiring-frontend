@@ -151,3 +151,21 @@ export const ContentChart = styled.div`
   width: 100%;
   margin-top: 30px;
 `;
+
+export const Container = styled.div`
+  display: flex;
+  flex: 1;
+  gap: 10px;
+
+  @media (max-width: 1500px) {
+    flex-direction: column;
+  }
+`;
+
+export const TableContainer = styled.div`
+  flex: 0.3;
+`;
+
+export const ChartContainer = styled.div`
+  flex: 1;
+`;

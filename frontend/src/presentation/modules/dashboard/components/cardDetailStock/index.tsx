@@ -1,6 +1,6 @@
 import {
-    Button, ButtonCompareAction, ButtonLabel, Content, ContentChart,
-    DescriptionValueStock, Header, Icon, InputCompare, Title, ValueStock,
+    Button, ButtonCompareAction, ButtonLabel, ChartContainer, Container, Content, ContentChart,
+    DescriptionValueStock, Header, Icon, InputCompare, TableContainer, Title, ValueStock,
     ViewAnimationPresence, ViewCompareStocks, ViewInformationAndDate, Wrapper
 } from "./styles.ts";
 import ChartLineHistory from "../chartLineHistory";
@@ -80,14 +80,14 @@ export const CardDetailStock: React.FC = () => {
                 <ContentChart>
                     {stocksToCompare.length > 0 ?
                         <ViewAnimationPresence show={stocksToCompare.length > 0}>
-                            <div style={{display: 'flex', flex: 1, gap: 10}}>
-                                <div style={{flex: .3}}>
+                            <Container style={{display: 'flex', flex: 1, gap: 10}}>
+                                <TableContainer style={{flex: .3}}>
                                     <TableStockCompare data={stocksCompared}/>
-                                </div>
-                                <div style={{flex: 1}}>
+                                </TableContainer>
+                                <ChartContainer style={{flex: 1}}>
                                     <ChartLineHistory stockHistory={stockHistory} loading={loadingStockHistory}/>
-                                </div>
-                            </div>
+                                </ChartContainer>
+                            </Container>
                         </ViewAnimationPresence> :
                         <ChartLineHistory stockHistory={stockHistory} loading={loadingStockHistory}/>
                     }
