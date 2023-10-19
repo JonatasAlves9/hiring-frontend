@@ -14,6 +14,7 @@ import {InputCurrency} from "../../../../components/inputCurrency";
 import {InputDate} from "../../../../components/inputDate";
 import {Button} from "../../../../components/button";
 import {GetStockGainsResponse} from "../../../../../domain/models/get-stock-gains-response.ts";
+import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 
 interface IProps {
     getGainsOfStock: (purchasedAt: string, purchasedAmount: string) => void;
@@ -41,34 +42,31 @@ export const CardSimulateStock = ({getGainsOfStock, gainsOfStock}: IProps) => {
                 <ContentResult>
                     <HeaderResult>
                         <TitleResult>AVA</TitleResult>
-                        <DescriptionResult>11/09/2023</DescriptionResult>
+                        <DescriptionResult>{gainsOfStock.purchasedAt}</DescriptionResult>
                     </HeaderResult>
 
                     <ViewPrices>
                         <ViewValue>
                             <Label>Último preço</Label>
-                            <Value>R$ 67,43</Value>
+                            <Value>{formatCurrency(gainsOfStock.lastPrice)}</Value>
                         </ViewValue>
                         <ViewValue>
                             <Label>Preço na data</Label>
-                            <Value>R$ 68,43</Value>
+                            <Value>{formatCurrency(gainsOfStock.priceAtDate)}</Value>
                         </ViewValue>
                     </ViewPrices>
                     <ViewQuantityStocks>
                         <ViewValue>
                             <Label>Quantidade de ações</Label>
-                            <Value>10 unidades</Value>
+                            <Value>{gainsOfStock.purchasedAmount} unidades</Value>
                         </ViewValue>
                     </ViewQuantityStocks>
                     <ViewValue>
                         <Label>Total ganho</Label>
-                        <Value>R$ 0,93</Value>
+                        <Value>{formatCurrency(gainsOfStock.capitalGains)}</Value>
                     </ViewValue>
                 </ContentResult>
-
             </Content>
-
-
         </Wrapper>
     )
 }
