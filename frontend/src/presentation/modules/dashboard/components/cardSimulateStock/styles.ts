@@ -13,6 +13,12 @@ export const Title = styled.p`
   font-weight: bold;
 `;
 
+export const LabelInput = styled.p`
+  font-size: ${({ theme }) => theme.sizes.sm}px;
+  margin: 8px 0;
+  color: ${({ theme }) => theme.colors.dark};
+`;
+
 export const Description = styled.p`
   font-size: ${({ theme }) => theme.sizes.xs}px;
   color: ${({ theme }) => theme.colors.dark};

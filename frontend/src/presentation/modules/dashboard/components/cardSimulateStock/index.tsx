@@ -8,6 +8,7 @@ import {
   Header,
   HeaderResult,
   Label,
+  LabelInput,
   Title,
   TitleResult,
   Value,
@@ -62,6 +63,7 @@ export const CardSimulateStock = () => {
       </Header>
       <Content>
         <form onSubmit={formik.handleSubmit}>
+          <LabelInput>Quantidade de ações</LabelInput>
           <InputQuantity
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
@@ -73,6 +75,7 @@ export const CardSimulateStock = () => {
             <Feedback>{formik.errors.currency}</Feedback>
           ) : null}
 
+          <LabelInput>Data da compra</LabelInput>
           <InputDate
             value={formik.values.date}
             onChange={formik.handleChange}
