@@ -1,8 +1,8 @@
 import React from 'react';
-import {Dashboard} from "../../../presentation/modules/dashboard";
+import { Dashboard } from '../../../presentation/modules/dashboard';
 
 export const MakeDashboard: React.FC = () => {
-    return <Dashboard/>;
+  return <Dashboard />;
 };
 
 export default MakeDashboard;

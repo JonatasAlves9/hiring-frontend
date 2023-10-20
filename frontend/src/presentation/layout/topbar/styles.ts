@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ISides {
-    side: 'left' | 'right'
+  side: 'left' | 'right';
 }
 
 export const Wrapper = styled.div`
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
 export const Sides = styled.div<ISides>`
   display: flex;
   width: 30%;
-  justify-content: ${({side}) => side !== 'left' ? 'flex-end' : 'none'}; 
+  justify-content: ${({ side }) => (side !== 'left' ? 'flex-end' : 'none')};
   padding: 0 20px;
 `;
 
@@ -26,14 +26,13 @@ export const Center = styled.div`
 `;
 
 export const Logo = styled.img`
- width: 120px;
+  width: 120px;
 `;
 
 export const Avatar = styled.img`
   height: 40px;
   width: 40px;
-  background-color: ${({theme}) => theme.colors.secondary};
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 100%;
   object-fit: cover;
 `;
-

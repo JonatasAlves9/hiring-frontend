@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const PanelContainer = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const ViewAnimation = styled.div`
   width: 300px;
 `;
 export const LoadingMessage = styled.div`
-  color:  ${({theme}) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
   border-radius: 8px;
   font-size: 18px;
   font-weight: bold;

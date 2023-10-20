@@ -1,9 +1,10 @@
-import {Title, Wrapper} from "./styles.ts";
+import React from 'react';
+import { Title, Wrapper } from './styles.ts';
 
 export const ItemMenu = () => {
-    return (
-        <Wrapper>
-            <Title>Dashboard</Title>
-        </Wrapper>
-    )
-}
+  return (
+    <Wrapper>
+      <Title>Dashboard</Title>
+    </Wrapper>
+  );
+};

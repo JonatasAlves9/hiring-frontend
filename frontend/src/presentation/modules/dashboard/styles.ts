@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ICenteredDiv {
-    marginTop: number
+  marginTop: number;
 }
 
 export const Wrapper = styled.div``;
@@ -16,7 +16,8 @@ export const ContentFlex = styled.div`
   @media (max-width: 1500px) {
     flex-direction: column; // Os itens do flexbox vão de cima para baixo
 
-    > * { // Todos os elementos filhos diretos
+    > * {
+      // Todos os elementos filhos diretos
       flex: none; // Redefinindo o flex para não usar os valores de flex definidos anteriormente
       width: 100%; // Tomando toda a largura disponível
       margin-bottom: 10px; // Adicionando uma margem para separar os elementos
@@ -34,7 +35,7 @@ export const LogoSearch = styled.img`
 
 export const CenteredDiv = styled.div<ICenteredDiv>`
   display: flex;
-  margin-top: ${({marginTop}) => marginTop || 0}px;
+  margin-top: ${({ marginTop }) => marginTop || 0}px;
   justify-content: center;
   align-items: center;
 `;

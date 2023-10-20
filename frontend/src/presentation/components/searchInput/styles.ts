@@ -1,11 +1,11 @@
-import styled from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface ISides {
-    side: 'left' | 'right'
+  side: 'left' | 'right';
 }
 export const Wrapper = styled.form`
-  background-color: ${({theme}) => theme.colors.white};
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 10px;
   border-radius: 40px;
   display: flex;
@@ -20,27 +20,27 @@ export const Button = styled.div`
   display: flex;
   gap: 10px;
   cursor: pointer;
-  transition: background-color 0.3s ease; 
+  transition: background-color 0.3s ease;
   padding: 10px;
   border-radius: 30px;
   &:hover {
-    background-color: ${({theme}) => theme.colors.secondary};;
+    background-color: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
-  color: ${({theme}) => theme.colors.darks};
+  color: ${({ theme }) => theme.colors.darks};
 `;
 
 export const Sides = styled.div<ISides>`
   display: flex;
-  justify-content: ${({side}) => side !== 'left' ? 'flex-end' : 'none'}; 
+  justify-content: ${({ side }) => (side !== 'left' ? 'flex-end' : 'none')};
   padding: 0 20px;
 `;
 
 export const Input = styled.input`
   border: none;
-  width:100%;
+  width: 100%;
   padding: 10px;
   height: 100%;
   border-radius: 10px;
@@ -50,6 +50,6 @@ export const Input = styled.input`
     outline: none;
   }
   &::placeholder {
-    color: ${({theme}) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.background};
   }
 `;

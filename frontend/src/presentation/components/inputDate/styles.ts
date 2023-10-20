@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  border: 1.5px solid ${({theme}) => theme.colors.background};
+  border: 1.5px solid ${({ theme }) => theme.colors.background};
   border-radius: 10px;
   justify-content: space-between;
   display: flex;
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 export const Input = styled.input`
   background-color: transparent;
   border: none;
-  width:100%;
+  width: 100%;
   height: 100%;
   border-radius: 10px;
   padding: 20px;
@@ -22,9 +22,3 @@ export const Input = styled.input`
     outline: none;
   }
 `;
-
-
-
-
-
-

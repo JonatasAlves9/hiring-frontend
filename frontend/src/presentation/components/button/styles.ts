@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color:${({theme}) => theme.colors.background};
+  background-color: ${({ theme }) => theme.colors.background};
   border-radius: 100px;
   justify-content: center;
   display: flex;
@@ -11,11 +11,7 @@ export const Wrapper = styled.div`
   cursor: pointer;
 `;
 
-
 export const Label = styled.p`
   font-weight: bold;
-  color:${({theme}) => theme.colors.white};
-  
+  color: ${({ theme }) => theme.colors.white};
 `;
-
-

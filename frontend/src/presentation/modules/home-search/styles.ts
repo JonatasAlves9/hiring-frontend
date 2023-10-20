@@ -1,11 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ICenteredDiv {
-    marginTop: number
+  marginTop: number;
 }
 
 export const Wrapper = styled.div``;
-
 
 export const LogoSearch = styled.img`
   width: 420px;
@@ -13,7 +12,7 @@ export const LogoSearch = styled.img`
 
 export const CenteredDiv = styled.div<ICenteredDiv>`
   display: flex;
-  margin-top: ${({marginTop}) => marginTop || 0}px;
+  margin-top: ${({ marginTop }) => marginTop || 0}px;
   justify-content: center;
   align-items: center;
 `;

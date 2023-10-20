@@ -1,10 +1,9 @@
 export interface CompareStockResponse {
-    "lastPrices": LastPrices[]
+  lastPrices: LastPrices[];
 }
 
-
 export interface LastPrices {
-    "name": string,
-    "lastPrice": number,
-    "pricedAt": string
+  name: string;
+  lastPrice: number;
+  pricedAt: string;
 }

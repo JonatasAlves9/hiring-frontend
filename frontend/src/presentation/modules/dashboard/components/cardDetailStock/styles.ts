@@ -1,5 +1,5 @@
-import styled, {keyframes} from "styled-components";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import styled, { keyframes } from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const fadeIn = keyframes`
   from {
@@ -20,11 +20,11 @@ const fadeOut = keyframes`
 `;
 
 interface ButtonProps {
-    show: boolean;
+  show: boolean;
 }
 
 export const Wrapper = styled.div`
-  background-color: ${({theme}) => theme.colors.dark};
+  background-color: ${({ theme }) => theme.colors.dark};
   flex: 1;
   border-radius: 20px;
 `;
@@ -33,7 +33,7 @@ export const Header = styled.div`
   height: 20px;
   padding: 30px 0;
   margin: 0 40px;
-  border-bottom: 1px solid ${({theme}) => theme.colors.border_dark};
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border_dark};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -50,11 +50,11 @@ export const ViewAnimationPresence = styled.div<ButtonProps>`
   justify-content: space-between;
   align-items: center;
   display: flex;
-  animation: ${({show}) => show ? fadeIn : fadeOut} 0.5s forwards;
+  animation: ${({ show }) => (show ? fadeIn : fadeOut)} 0.5s forwards;
   gap: 10px;
 `;
 export const InputCompare = styled.input`
-  background-color: ${({theme}) => theme.colors.white};;
+  background-color: ${({ theme }) => theme.colors.white};
   padding: 5px;
   border-radius: 8px;
   border: none;
@@ -62,8 +62,8 @@ export const InputCompare = styled.input`
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
-  color: ${({theme}) => theme.colors.white};
-  font-size: ${({theme}) => theme.sizes.xs}px;
+  color: ${({ theme }) => theme.colors.white};
+  font-size: ${({ theme }) => theme.sizes.xs}px;
 `;
 
 export const ButtonCompareAction = styled.div`
@@ -74,14 +74,13 @@ export const ButtonCompareAction = styled.div`
   cursor: pointer;
   padding: 10px;
   border-radius: 10px;
-  border: 1px solid ${({theme}) => theme.colors.dark};
+  border: 1px solid ${({ theme }) => theme.colors.dark};
   transition: border 0.3s ease;
 
   &:hover {
-    border: 1px solid ${({theme}) => theme.colors.secondary};;
+    border: 1px solid ${({ theme }) => theme.colors.secondary};
   }
 `;
-
 
 export const Button = styled.div`
   justify-content: space-between;
@@ -94,13 +93,13 @@ export const Button = styled.div`
   border-radius: 10px;
 
   &:hover {
-    background-color: ${({theme}) => theme.colors.background};;
+    background-color: ${({ theme }) => theme.colors.background};
   }
 `;
 
 export const ButtonLabel = styled.p`
-  font-size: ${({theme}) => theme.sizes.xs}px;
-  color: ${({theme}) => theme.colors.white};
+  font-size: ${({ theme }) => theme.sizes.xs}px;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ViewInformationAndDate = styled.div`
@@ -112,7 +111,8 @@ export const ViewInformationAndDate = styled.div`
   @media (max-width: 1500px) {
     flex-direction: column; // Os itens do flexbox vão de cima para baixo
 
-    > * { // Todos os elementos filhos diretos
+    > * {
+      // Todos os elementos filhos diretos
       flex: none; // Redefinindo o flex para não usar os valores de flex definidos anteriormente
       width: 100%; // Tomando toda a largura disponível
       margin-bottom: 10px; // Adicionando uma margem para separar os elementos
@@ -125,10 +125,9 @@ export const ViewInformationAndDate = styled.div`
   }
 `;
 
-
 export const Title = styled.p`
-  font-size: ${({theme}) => theme.sizes.xl}px;
-  color: ${({theme}) => theme.colors.white};
+  font-size: ${({ theme }) => theme.sizes.xl}px;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: lighter;
 `;
 
@@ -137,14 +136,14 @@ export const Content = styled.div`
   margin: 0 40px;
 `;
 export const ValueStock = styled.p`
-  font-size: ${({theme}) => theme.sizes.xxl + 10}px;
-  color: ${({theme}) => theme.colors.white};
+  font-size: ${({ theme }) => theme.sizes.xxl + 10}px;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: lighter;
 `;
 
 export const DescriptionValueStock = styled.p`
-  font-size: ${({theme}) => theme.sizes.xs}px;
-  color: ${({theme}) => theme.colors.white};
+  font-size: ${({ theme }) => theme.sizes.xs}px;
+  color: ${({ theme }) => theme.colors.white};
 `;
 
 export const ContentChart = styled.div`

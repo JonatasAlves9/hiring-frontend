@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import styled from 'styled-components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export const Wrapper = styled.div`
-  background-color: ${({theme}) => theme.colors.dark};
+  background-color: ${({ theme }) => theme.colors.dark};
   border-radius: 20px;
   padding: 10px;
   width: 40px;
@@ -12,5 +12,5 @@ export const Wrapper = styled.div`
 `;
 
 export const Icon = styled(FontAwesomeIcon)`
-  color: ${({theme}) => theme.colors.white};
+  color: ${({ theme }) => theme.colors.white};
 `;

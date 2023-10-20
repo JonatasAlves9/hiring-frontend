@@ -1,5 +1,5 @@
 export interface GetStockByNameResponse {
-    "name": string,
-    "lastPrice": number,
-    "pricedAt": string
+  name: string;
+  lastPrice: number;
+  pricedAt: string;
 }

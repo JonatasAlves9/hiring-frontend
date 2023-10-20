@@ -1,6 +1,6 @@
 export class ForbiddenError extends Error {
-    constructor() {
-        super('Acesso negado');
-        this.name = 'ForbiddenError';
-    }
+  constructor() {
+    super('Acesso negado');
+    this.name = 'ForbiddenError';
+  }
 }

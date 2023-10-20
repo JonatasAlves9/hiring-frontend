@@ -1,21 +1,21 @@
-import styled from "styled-components";
-import {themeDark} from "../../../../style/themes.ts";
+import styled from 'styled-components';
+import { themeDark } from '../../../../style/themes.ts';
 
 export const Wrapper = styled.div`
-  flex: .3;
-  background-color: ${({theme}) => theme.colors.secondary};
+  flex: 0.3;
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 20px;
 `;
 
 export const Title = styled.p`
-  font-size: ${({theme}) => theme.sizes.xl}px;
-  color: ${({theme}) => theme.colors.dark};
+  font-size: ${({ theme }) => theme.sizes.xl}px;
+  color: ${({ theme }) => theme.colors.dark};
   font-weight: bold;
 `;
 
 export const Description = styled.p`
-  font-size: ${({theme}) => theme.sizes.xs}px;
-  color: ${({theme}) => theme.colors.dark};
+  font-size: ${({ theme }) => theme.sizes.xs}px;
+  color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const Content = styled.div`
@@ -37,17 +37,17 @@ export const HeaderResult = styled.div`
 `;
 
 export const ContentResult = styled.div`
-    margin-top: 30px;
+  margin-top: 30px;
 `;
 export const TitleResult = styled.p`
-  font-size: ${({theme}) => theme.sizes.xl}px;
-  color: ${({theme}) => theme.colors.dark};
+  font-size: ${({ theme }) => theme.sizes.xl}px;
+  color: ${({ theme }) => theme.colors.dark};
   font-weight: bold;
 `;
 
 export const DescriptionResult = styled.p`
-  font-size: ${({theme}) => theme.sizes.xs}px;
-  color: ${({theme}) => theme.colors.dark};
+  font-size: ${({ theme }) => theme.sizes.xs}px;
+  color: ${({ theme }) => theme.colors.dark};
 `;
 
 export const ViewPrices = styled.div`
@@ -67,22 +67,22 @@ export const ViewQuantityStocks = styled.div`
 `;
 
 export const Label = styled.p`
-  font-size: ${({theme}) => theme.sizes.sm}px;
-  color: ${({theme}) => theme.colors.dark};
+  font-size: ${({ theme }) => theme.sizes.sm}px;
+  color: ${({ theme }) => theme.colors.dark};
   font-weight: bold;
   text-align: center;
 `;
 
 export const Value = styled.p`
-  font-size: ${({theme}) => theme.sizes.sm}px;
-  color: ${({theme}) => theme.colors.dark};
+  font-size: ${({ theme }) => theme.sizes.sm}px;
+  color: ${({ theme }) => theme.colors.dark};
   text-align: center;
 `;
 
 export const ViewValue = styled.div``;
 
 export const Feedback = styled.p`
-  font-size: ${({theme}) => theme.sizes.xs}px;
+  font-size: ${({ theme }) => theme.sizes.xs}px;
   color: red;
   margin-top: 5px;
 `;
