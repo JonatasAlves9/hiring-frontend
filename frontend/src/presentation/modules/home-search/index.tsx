@@ -1,7 +1,15 @@
 import React from 'react';
-import { CenteredDiv, LogoSearch, Wrapper } from './styles.ts';
+import {
+  ButtonSuggestion,
+  ButtonSuggestionLabel,
+  CenteredDiv,
+  LogoSearch,
+  ViewSuggestion,
+  Wrapper,
+} from './styles.ts';
 import { SearchInput } from '../../components/searchInput';
 import { useNavigate } from 'react-router-dom';
+import { useStock } from '../../hooks/useStocks.tsx';
 
 const LogoContainer = () => (
   <CenteredDiv marginTop={200}>
@@ -19,13 +27,29 @@ const SearchBar = ({ onChange }: { onChange: (value: string) => void }) => (
   </CenteredDiv>
 );
 
+const suggestions = ['IBM', 'VALE', 'VAL', 'V'];
+
 export const HomeSearch = () => {
   const navigate = useNavigate();
-
   return (
     <Wrapper>
       <LogoContainer />
-      <SearchBar onChange={(route) => navigate(`/stocks/${route}`)} />
+      <SearchBar
+        onChange={(route) => {
+          navigate(`/stocks/${route}`);
+        }}
+      />
+      <ViewSuggestion>
+        <ButtonSuggestionLabel>Sugestões:</ButtonSuggestionLabel>
+        {suggestions.map((item, index) => (
+          <ButtonSuggestion
+            key={index}
+            onClick={() => navigate(`/stocks/${item}`)}
+          >
+            <ButtonSuggestionLabel>{item}</ButtonSuggestionLabel>
+          </ButtonSuggestion>
+        ))}
+      </ViewSuggestion>
     </Wrapper>
   );
 };

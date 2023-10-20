@@ -10,7 +10,7 @@ import { STATUS_REQUEST } from '../../../domain/models/status-request.ts';
 import { LoadingScreen } from '../../components/loadingScreen';
 
 export const Dashboard = () => {
-  const { getDetailAboutStock, loadingStockDetail } = useStock();
+  const { getDetailAboutStock, loadingStockDetail, resetStock } = useStock();
   const { name_stock } = useParams();
   const navigate = useNavigate();
 
@@ -22,7 +22,12 @@ export const Dashboard = () => {
     <LoadingScreen />
   ) : (
     <Wrapper>
-      <IconBack onPress={() => navigate('/')} />
+      <IconBack
+        onPress={() => {
+          navigate('/');
+          resetStock();
+        }}
+      />
       <ContentFlex>
         <CardDetailStock />
         <CardSimulateStock />

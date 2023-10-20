@@ -16,3 +16,33 @@ export const CenteredDiv = styled.div<ICenteredDiv>`
   justify-content: center;
   align-items: center;
 `;
+
+export const ButtonSuggestion = styled.div`
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  gap: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  padding: 5px 20px;
+  border-radius: 10px;
+  border: 1.5px solid ${({ theme }) => theme.colors.secondary};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.dark};
+  }
+`;
+
+export const ButtonSuggestionLabel = styled.p`
+  font-size: ${({ theme }) => theme.sizes.xs}px;
+  color: ${({ theme }) => theme.colors.white};
+`;
+
+export const ViewSuggestion = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  margin-top: 20px;
+  gap: 10px;
+`;

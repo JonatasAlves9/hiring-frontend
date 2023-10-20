@@ -11,7 +11,7 @@ export const Wrapper = styled.form`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
+  width: 50%;
 `;
 
 export const Button = styled.div`

@@ -170,6 +170,7 @@ const StockProvider = ({ children, stock }: IProps) => {
     setGainsOfStock(undefined);
     setStockedCompared(undefined);
     setGainsOfStock(undefined);
+    setLoadingStockDetail(STATUS_REQUEST.LOADING);
   }, [setStockDetail, setGainsOfStock, setStockedCompared, setGainsOfStock]);
 
   const compareStock = useCallback(
