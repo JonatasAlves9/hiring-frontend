@@ -79,7 +79,6 @@ const StockProvider = ({children, stock}: IProps) => {
         }).catch((err) => {
             toastError(err.message)
             navigate('/')
-            setLoadingStockDetail(STATUS_REQUEST.ERROR)
         })
     }, [])
 
@@ -117,11 +116,9 @@ const StockProvider = ({children, stock}: IProps) => {
         }).then((res) => {
             setGainsOfStock(res)
             setLoadingStockGains(STATUS_REQUEST.DONE)
-
         }).catch((err) => {
             toastError(err.message)
             setLoadingStockGains(STATUS_REQUEST.ERROR)
-
         })
     }, [stockDetail])
 
@@ -144,7 +141,6 @@ const StockProvider = ({children, stock}: IProps) => {
         }
 
         setLoadingCompareStock(STATUS_REQUEST.LOADING)
-
         stock.compareStocks({
             stock_name: stockDetail.name,
             stocksToCompare: [...stocksToCompare, new_stock_to_compare]
@@ -161,7 +157,7 @@ const StockProvider = ({children, stock}: IProps) => {
             toastError(err.message)
             setLoadingCompareStock(STATUS_REQUEST.ERROR)
         })
-    }, [stockDetail])
+    }, [stockDetail, stocksToCompare])
 
 
     return (
