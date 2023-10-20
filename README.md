@@ -27,3 +27,77 @@ A ideia é implementar algo simples, sem preocupações com dividendos, taxas ad
 - Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
 - Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje, isso conta pontos à favor);
 - Nos envie o link do seu desafio finalizado, juntamente com os prints de tela.
+
+```
+frontend/
+│
+├── public/
+│   └── vite.svg
+│
+├── src/
+│   ├── data/                    # Camada de Dados
+│   │   ├── protocols/           # Define os contratos que os adaptadores de dados devem seguir
+│   │   │   └── http/
+│   │   └── usecases/            # Implementações dos casos de uso (regras de negócio)
+│   │       └── stocks/
+│   ├── domain/                  # Camada de Domínio
+│   │   ├── errors/              # Erros específicos do domínio
+│   │   └── models/              # Modelos de entidades e objetos de valor
+│   ├── infra/                   # Camada de Infraestrutura
+│   │   └── http/                # Implementações de protocolos HTTP (ex: adaptadores para APIs)
+│   │       ├── axios-http-client/
+│   │       └── routes/
+│   ├── main/                    # Camada principal que orquestra a inicialização da aplicação
+│   │   ├── factories/           # Fábricas para criar instâncias de objetos e injeção de dependências
+│   │   │   ├── modules/
+│   │   │   └── usecases/
+│   │   │       └── stocks/
+│   │   ├── http/
+│   │   ├── routing/             # Configuração de roteamento da aplicação
+│   │   ├── style.css
+│   │   └── main.tsx             # Ponto de entrada da aplicação
+│   ├── presentation/            # Camada de Apresentação
+│   │   ├── assets/             
+│   │   │   ├── animations/
+│   │   │   └── fonts/
+│   │   ├── components/          # Componentes reutilizáveis da UI
+│   │   │   ├── button/
+│   │   │   ├── errorPanel/
+│   │   │   ├── iconBack/
+│   │   │   ├── input/
+│   │   │   ├── inputDate/
+│   │   │   ├── loadingPanel/
+│   │   │   ├── loadingScreen/
+│   │   │   ├── searchInput/
+│   │   │   ├── selectPeriod/
+│   │   │   └── toast/
+│   │   ├── hooks/               # Hooks customizados para lógica de apresentação
+│   │   ├── layout/              # Componentes de layout (ex: cabeçalho, rodapé)
+│   │   │   ├── content/
+│   │   │   ├── pageWrapper/
+│   │   │   └── topbar/
+│   │   │       └── components/
+│   │   │           └── itemMenu/
+│   │   ├── modules/             # Módulos ou páginas específicas da aplicação
+│   │   │   ├── dashboard/
+│   │   │   │   └── components/
+│   │   │   └── home-search/
+│   │   ├── style/               # Estilos globais e temas
+│   │   └── utils/               # Funções utilitárias para a camada de apresentação
+│   ├── vite-env.d.ts
+│   
+│
+├── tests/                       # Testes da aplicação
+│   └── data/
+│       └── mocks/
+│
+├── .eslintrc.cjs
+├── babel.config.json
+├── jest.config.cjs
+├── package.json
+├── README.md
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts
+
+```
