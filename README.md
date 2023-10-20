@@ -1,32 +1,70 @@
-# Descrição
 
-Uma corretora de ações está desenvolvendo um sistema para permitir que pequenos investidores possam tomar decisões melhores sobre seu portfólio. Uma das funcionalidades importantes é a de verificar o desempenho de uma ação nos seguintes cenários:
+# Hiring Frontend 🖥️
 
-- Preço atual;
-- Preço histórico;
-- Preço atual em comparação a outras ações;
-- Projeção de ganhos com compra em data específica.
+Bem-vindo ao repositório do frontend da nossa aplicação! Aqui, utilizamos tecnologias de ponta como React, Vite, TypeScript e muitas outras para entregar uma experiência de usuário incrível.
 
-Para isso, a equipe de software da empresa optou por desenvolver duas aplicações: um serviço de backend especializado nesses requisitos (que permitirá que essas funcionalidades sejam reutilizadas em outros produtos da empresa) e um dashboard configurável que dará visibilidade aos dados. Sua missão para este teste é implementar o frontend dessas partes.
+### 🛠️ Configuração
 
-A ideia é implementar algo simples, sem preocupações com dividendos, taxas administrativas ou outras incumbências que afetariam o montante total. Sendo assim, pressuponha que a compradora deseja saber o quanto teria ganhado ou perdido se tivesse investido seu dinheiro numa determinada quantidade de ações de uma empresa em alguma data no passado.
+**Passo 1:** Instale as dependências do backend e do frontend:
 
-# Requisitos técnicos da solução
+```bash
+cd server && yarn
+```
 
-- O serviço deverá ser implementado via HTTP, e o formato de serialização das requisições e respostas será JSON.
-- O frontend deverá ser um SPA(Single-Page Application) com o framework de sua escolha(React, Vue, Angular).
-- O backend já está desenvolvido, você precisará apenas criar o frontend e fazer a conexão entre as duas plataformas. Mas caso queira criar um backend também, fique à vontade.
-- Sua solução deverá ter testes automatizados.
-- Para obter dados de ações no backend, você poderá adquirir uma API_KEY gratuita no Alpha Vantage (https://www.alphavantage.co).
-- Ao final do desafio você deve enviar prints das telas funcionando.
-- O tratamento de erros não será explicitado nos endpoints. O candidato ou candidata poderá inferir casos que poderão gerar erros ou duplicidades nos dados, e tratá-los de acordo. A ausência de tratamento não desqualifica a proposta; a presença, no entanto, contará pontos a favor.
+E depois:
 
-# Como enviar sua proposta
+```bash
+cd frontend && yarn
+```
 
-- Clone esse repositório (Você pode utilizar o backend que ja está desenvolvido);
-- Implemente sua solução, fazendo commits da maneira que faria em um projeto profissional;
-- Substitua este README com um específico para sua aplicação, indicando como rodá-la, e como executar os testes (fique à vontade para inserir mais detalhes técnicos, caso deseje, isso conta pontos à favor);
-- Nos envie o link do seu desafio finalizado, juntamente com os prints de tela.
+**Passo 2:** Com as dependências instaladas, é hora de iniciar a aplicação:
+
+```bash
+yarn dev
+```
+
+Execute o comando acima tanto na pasta \`server\` quanto na \`frontend\`.
+
+🎉 Agora, a aplicação frontend estará rodando em: [http://localhost:5173/](http://localhost:5173/).
+### 🧪 Testes
+
+Para executar os testes do frontend, navegue até a pasta \`frontend\` e execute:
+
+```bash
+yarn test
+```
+
+Para verificar a cobertura de testes, use:
+
+```bash
+yarn test:coverage
+```
+
+### 🏛️ Arquitetura
+
+**Clean Architecture**: Esta abordagem, proposta por Robert C. Martin, visa separar as responsabilidades do software em camadas distintas. Isso torna o sistema mais modular, flexível e testável. No nosso projeto, adotamos a Clean Architecture para garantir um código mais organizado, escalável e fácil de manter.
+
+Neste projeto, a Clean Architecture foi adotada para garantir que o código seja fácil de manter, escalar e testar. Ao separar as responsabilidades em diferentes camadas, podemos garantir que cada parte do sistema tenha um único propósito e que as dependências entre elas sejam mínimas.
+
+Aqui estão as principais camadas usadas:
+
+- **Camada de Dados (data)**: Responsável pela comunicação com fontes de dados externas, como APIs ou bancos de dados.
+- **Camada de Domínio (domain)**: Contém a lógica de negócios central e as entidades do sistema.
+- **Camada de Apresentação(presentation)**: Lida com a interface do usuário e a apresentação dos dados.
+- **Camada Principal (main)**: Orquestra a inicialização da aplicação e a injeção de dependências.
+Ao usar a Clean Architecture, garantimos que o sistema seja resistente a mudanças, pois as alterações em uma camada não afetam diretamente as outras. 
+
+### 🛠️ Tecnologias Utilizadas
+
+- **React**: Biblioteca JavaScript para a construção de interfaces interativas.
+- **Vite**: Ferramenta de build que proporciona um desenvolvimento mais ágil.
+- **TypeScript**: Adiciona tipagem estática ao JavaScript, trazendo mais segurança ao código.
+- **Styled-Components**: Permite estilizar componentes React de forma elegante e dinâmica.
+- **React Router**: Gerencia as rotas e a navegação da aplicação.
+- **Jest**: Framework de testes robusto e focado na simplicidade.
+- **Formik**: Facilita a construção e validação de formulários no React.
+
+### 📂 Estrutura de Pastas
 
 ```
 frontend/
