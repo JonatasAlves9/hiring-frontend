@@ -1,4 +1,4 @@
-// ErrorPanel.tsx
+// errorPanel.tsx
 import React from 'react';
 import {ErrorMessage, PanelContainer, RetryButton} from "./styles.ts";
 

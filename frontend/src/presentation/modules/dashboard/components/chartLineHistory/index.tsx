@@ -5,7 +5,7 @@ import {GetStockHistoryResponse} from "../../../../../domain/models/get-stock-hi
 import {formatCurrency} from "../../../../utils/formatCurrency.ts";
 import {STATUS_REQUEST, StatusRequest} from "../../../../../domain/models/status-request.ts";
 import {LoadingPanel} from "../../../../components/loadingPanel";
-import {ErrorPanel} from "../../../../components/ErrorPanel";
+import {ErrorPanel} from "../../../../components/errorPanel";
 
 Chart.register(...registerables);
 

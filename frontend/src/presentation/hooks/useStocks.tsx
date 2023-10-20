@@ -1,12 +1,13 @@
 import {createContext, JSX, useCallback, useContext, useState,} from 'react';
+import {useNavigate} from "react-router-dom";
+
 import {Stocks} from "../../domain/usecases/stocks/stocks.ts";
 import {GetStockByNameResponse} from "../../domain/models";
 import {GetStockHistoryResponse} from "../../domain/models/get-stock-history-response.ts";
 import {GetStockGainsResponse} from "../../domain/models/get-stock-gains-response.ts";
 import {CompareStockResponse} from "../../domain/models/compare-stock-response.ts";
-import {toastError} from "../components/toast";
 import {STATUS_REQUEST, StatusRequest} from "../../domain/models/status-request.ts";
-import {useNavigate} from "react-router-dom";
+import {toastError} from "../components/toast";
 
 interface IProps {
     children: JSX.Element;
@@ -16,13 +17,13 @@ interface IProps {
 interface StockContextType {
     stockDetail: GetStockByNameResponse | undefined;
     stockHistory: GetStockHistoryResponse | undefined;
+    gainsOfStock: GetStockGainsResponse | undefined;
+    stocksCompared: CompareStockResponse | undefined;
     stocksToCompare: string[] | undefined;
     getDetailAboutStock: (stock_name: string) => void;
     getHistoryOfStock: (from: Date, to: Date) => void;
     getGainsOfStock: (purchasedAt: Date, purchasedAmount: string) => void;
     compareStock: (new_stock_to_compare: string) => void;
-    gainsOfStock: GetStockGainsResponse | undefined;
-    stocksCompared: CompareStockResponse | undefined;
     resetCompare: () => void,
     resetStock: () => void,
     loadingStockDetail: StatusRequest
@@ -34,19 +35,19 @@ interface StockContextType {
 export const StockContext = createContext<StockContextType>({
     stockDetail: undefined,
     stockHistory: undefined,
+    gainsOfStock: undefined,
+    stocksCompared: undefined,
     stocksToCompare: [],
+    loadingStockDetail: STATUS_REQUEST.NONE,
+    loadingStockHistory: STATUS_REQUEST.NONE,
+    loadingStockGains: STATUS_REQUEST.NONE,
+    loadingCompareStock: STATUS_REQUEST.NONE,
     getDetailAboutStock: () => null,
     getHistoryOfStock: () => null,
     getGainsOfStock: () => null,
     compareStock: () => null,
     resetCompare: () => null,
     resetStock: () => null,
-    gainsOfStock: undefined,
-    stocksCompared: undefined,
-    loadingStockDetail: STATUS_REQUEST.NONE,
-    loadingStockHistory: STATUS_REQUEST.NONE,
-    loadingStockGains: STATUS_REQUEST.NONE,
-    loadingCompareStock: STATUS_REQUEST.NONE,
 
 });
 

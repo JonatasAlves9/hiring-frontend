@@ -51,7 +51,7 @@ export const CardSimulateStock = () => {
 
     const formik = useFormik({
         initialValues: {
-            currency: '',
+            currency: '50',
             date: '',
         },
         validationSchema: validationSchema,
