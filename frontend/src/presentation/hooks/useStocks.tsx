@@ -89,21 +89,24 @@ const StockProvider = ({ children, stock }: IProps) => {
 
   const navigate = useNavigate();
 
-  const getDetailAboutStock = useCallback((stock_name: string) => {
-    setLoadingStockDetail(STATUS_REQUEST.LOADING);
-    stock
-      .getStockByName({
-        stock_name,
-      })
-      .then((res) => {
-        setStockDetail(res);
-        setLoadingStockDetail(STATUS_REQUEST.DONE);
-      })
-      .catch((err) => {
-        toastError(err.message);
-        navigate('/');
-      });
-  }, []);
+  const getDetailAboutStock = useCallback(
+    (stock_name: string) => {
+      setLoadingStockDetail(STATUS_REQUEST.LOADING);
+      stock
+        .getStockByName({
+          stock_name,
+        })
+        .then((res) => {
+          setStockDetail(res);
+          setLoadingStockDetail(STATUS_REQUEST.DONE);
+        })
+        .catch((err) => {
+          toastError(err.message);
+          navigate('/');
+        });
+    },
+    [stockDetail],
+  );
 
   const getHistoryOfStock = useCallback(
     (from: Date, to: Date) => {

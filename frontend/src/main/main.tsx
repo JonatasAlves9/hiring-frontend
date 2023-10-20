@@ -13,16 +13,14 @@ import { makeStock } from './factories/usecases/stocks/remote-stocks-factory.ts'
 import StockProvider from '../presentation/hooks/useStocks.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <ThemeProvider theme={themeDark}>
-      <BrowserRouter>
-        <StockProvider stock={makeStock()}>
-          <>
-            <ToastContainer />
-            <Router />
-          </>
-        </StockProvider>
-      </BrowserRouter>
-    </ThemeProvider>
-  </React.StrictMode>,
+  <ThemeProvider theme={themeDark}>
+    <BrowserRouter>
+      <StockProvider stock={makeStock()}>
+        <>
+          <ToastContainer />
+          <Router />
+        </>
+      </StockProvider>
+    </BrowserRouter>
+  </ThemeProvider>,
 );
