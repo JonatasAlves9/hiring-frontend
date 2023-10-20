@@ -174,7 +174,6 @@ const StockProvider = ({ children, stock }: IProps) => {
       if (stockDetail === undefined || new_stock_to_compare === '') {
         return;
       }
-
       setLoadingCompareStock(STATUS_REQUEST.LOADING);
       stock
         .compareStocks({
@@ -182,7 +181,7 @@ const StockProvider = ({ children, stock }: IProps) => {
           stocksToCompare: [...stocksToCompare, new_stock_to_compare],
         })
         .then((res) => {
-          if (stocksToCompare.length + 1 > res.lastPrices.length) {
+          if (stocksToCompare.length + 2 > res.lastPrices.length) {
             toastError('Ação não encontrada!');
             setLoadingCompareStock(STATUS_REQUEST.ERROR);
             return;
