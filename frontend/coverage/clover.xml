@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1697748123560" clover="3.2.0">
-  <project timestamp="1697748123560" name="All files">
-    <metrics statements="56" coveredstatements="56" conditionals="11" coveredconditionals="11" methods="14" coveredmethods="14" elements="81" coveredelements="81" complexity="0" loc="56" ncloc="56" packages="4" files="7" classes="7"/>
+<coverage generated="1697769213949" clover="3.2.0">
+  <project timestamp="1697769213949" name="All files">
+    <metrics statements="57" coveredstatements="57" conditionals="11" coveredconditionals="11" methods="14" coveredmethods="14" elements="82" coveredelements="82" complexity="0" loc="57" ncloc="57" packages="4" files="7" classes="7"/>
     <package name="src.data.protocols.http">
       <metrics statements="9" coveredstatements="9" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
       <file name="http-client.ts" path="/Users/jonatas/Documents/projects/hiring-frontend/frontend/src/data/protocols/http/http-client.ts">
@@ -18,32 +18,33 @@
       </file>
     </package>
     <package name="src.data.usecases.stocks">
-      <metrics statements="23" coveredstatements="23" conditionals="7" coveredconditionals="7" methods="8" coveredmethods="8"/>
+      <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="7" methods="8" coveredmethods="8"/>
       <file name="remote-stocks.ts" path="/Users/jonatas/Documents/projects/hiring-frontend/frontend/src/data/usecases/stocks/remote-stocks.ts">
-        <metrics statements="23" coveredstatements="23" conditionals="7" coveredconditionals="7" methods="8" coveredmethods="8"/>
+        <metrics statements="24" coveredstatements="24" conditionals="7" coveredconditionals="7" methods="8" coveredmethods="8"/>
         <line num="1" count="1" type="stmt"/>
         <line num="10" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="23" count="11" type="stmt"/>
-        <line num="24" count="11" type="stmt"/>
-        <line num="29" count="1" type="stmt"/>
+        <line num="19" count="1" type="stmt"/>
+        <line num="27" count="11" type="stmt"/>
+        <line num="28" count="11" type="stmt"/>
         <line num="34" count="1" type="stmt"/>
-        <line num="38" count="1" type="stmt"/>
-        <line num="43" count="1" type="stmt"/>
-        <line num="47" count="1" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="56" count="2" type="stmt"/>
-        <line num="57" count="2" type="cond" truecount="3" falsecount="0"/>
-        <line num="58" count="1" type="stmt"/>
-        <line num="61" count="2" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="65" count="2" type="stmt"/>
-        <line num="70" count="2" type="stmt"/>
-        <line num="74" count="9" type="cond" truecount="4" falsecount="0"/>
-        <line num="76" count="6" type="stmt"/>
-        <line num="78" count="1" type="stmt"/>
-        <line num="80" count="1" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="45" count="1" type="stmt"/>
+        <line num="57" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="75" count="1" type="stmt"/>
+        <line num="81" count="2" type="stmt"/>
+        <line num="82" count="2" type="cond" truecount="3" falsecount="0"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="86" count="1" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="89" count="1" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="102" count="2" type="stmt"/>
+        <line num="106" count="9" type="cond" truecount="4" falsecount="0"/>
+        <line num="108" count="6" type="stmt"/>
+        <line num="110" count="1" type="stmt"/>
+        <line num="112" count="1" type="stmt"/>
+        <line num="114" count="1" type="stmt"/>
       </file>
     </package>
     <package name="src.domain.errors">
